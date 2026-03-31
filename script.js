@@ -364,113 +364,99 @@ gsap.to('.hero-background', {
     }
 });
 
-// Stagger animations for therapy cards
+// ── Therapy cards — fromTo with explicit opacity:1 end state ──
 gsap.utils.toArray('.therapy-card').forEach((card, index) => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        delay: index * 0.08,
-        ease: 'power3.out'
-    });
+    gsap.fromTo(card,
+        { opacity: 0, y: 40 },
+        {
+            opacity: 1, y: 0,
+            scrollTrigger: { trigger: card, start: 'top 82%', toggleActions: 'play none none none' },
+            duration: 0.8,
+            delay: (index % 3) * 0.1,
+            ease: 'power3.out'
+        }
+    );
 });
 
-// Stagger animations for differentiator cards
+// ── Differentiator cards ──
 gsap.utils.toArray('.differentiator-card').forEach((card, index) => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        delay: index * 0.1,
-        ease: 'power3.out'
-    });
+    gsap.fromTo(card,
+        { opacity: 0, y: 35 },
+        {
+            opacity: 1, y: 0,
+            scrollTrigger: { trigger: card, start: 'top 82%', toggleActions: 'play none none none' },
+            duration: 0.75,
+            delay: (index % 2) * 0.12,
+            ease: 'power3.out'
+        }
+    );
 });
 
-// Stagger animations for condition items
+// ── Condition items ──
 gsap.utils.toArray('.condition-item').forEach((item, index) => {
-    gsap.from(item, {
-        scrollTrigger: {
-            trigger: item,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        scale: 0.9,
-        duration: 0.6,
-        delay: index * 0.03,
-        ease: 'back.out(1.2)'
-    });
+    gsap.fromTo(item,
+        { opacity: 0, scale: 0.92 },
+        {
+            opacity: 1, scale: 1,
+            scrollTrigger: { trigger: item, start: 'top 88%', toggleActions: 'play none none none' },
+            duration: 0.5,
+            delay: (index % 4) * 0.04,
+            ease: 'back.out(1.2)'
+        }
+    );
 });
 
-// Stagger animations for benefit items
+// ── Benefit items ──
 gsap.utils.toArray('.benefit-item').forEach((item, index) => {
-    gsap.from(item, {
-        scrollTrigger: {
-            trigger: item,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.7,
-        delay: index * 0.06,
-        ease: 'power3.out'
-    });
+    gsap.fromTo(item,
+        { opacity: 0, y: 25 },
+        {
+            opacity: 1, y: 0,
+            scrollTrigger: { trigger: item, start: 'top 88%', toggleActions: 'play none none none' },
+            duration: 0.6,
+            delay: (index % 4) * 0.07,
+            ease: 'power3.out'
+        }
+    );
 });
 
-// Authority banner slide-in
-gsap.from('.authority-banner', {
-    scrollTrigger: {
-        trigger: '.authority-banner',
-        start: 'top 80%',
-        toggleActions: 'play none none reverse'
-    },
-    opacity: 0,
-    x: -50,
-    duration: 1,
-    ease: 'power3.out'
-});
-
-// Insight cards animation
-gsap.utils.toArray('.insight-card').forEach((card, index) => {
-    gsap.from(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 50,
+// ── Authority banner ──
+gsap.fromTo('.authority-banner',
+    { opacity: 0, x: -40 },
+    {
+        opacity: 1, x: 0,
+        scrollTrigger: { trigger: '.authority-banner', start: 'top 82%', toggleActions: 'play none none none' },
         duration: 0.9,
-        delay: index * 0.2,
         ease: 'power3.out'
-    });
+    }
+);
+
+// ── Insight cards ──
+gsap.utils.toArray('.insight-card').forEach((card, index) => {
+    gsap.fromTo(card,
+        { opacity: 0, y: 45 },
+        {
+            opacity: 1, y: 0,
+            scrollTrigger: { trigger: card, start: 'top 82%', toggleActions: 'play none none none' },
+            duration: 0.9,
+            delay: index * 0.18,
+            ease: 'power3.out'
+        }
+    );
 });
 
-// FAQ items stagger
+// ── FAQ items ──
 gsap.utils.toArray('.faq-item').forEach((item, index) => {
-    gsap.from(item, {
-        scrollTrigger: {
-            trigger: item,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.7,
-        delay: index * 0.1,
-        ease: 'power3.out'
-    });
+    gsap.fromTo(item,
+        { opacity: 0, y: 25 },
+        {
+            opacity: 1, y: 0,
+            scrollTrigger: { trigger: item, start: 'top 88%', toggleActions: 'play none none none' },
+            duration: 0.6,
+            delay: index * 0.06,
+            ease: 'power3.out'
+        }
+    );
 });
 
 // ============================================
