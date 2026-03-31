@@ -311,20 +311,34 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero animations
+// ── Hero: letter-by-letter title reveal ──
+const heroTitle = document.querySelector('.hero h1');
+if (heroTitle) {
+    const raw = heroTitle.textContent;
+    heroTitle.innerHTML = raw.split('').map(ch =>
+        `<span class="hero-char" style="display:inline-block">${ch === ' ' ? '&nbsp;' : ch}</span>`
+    ).join('');
+    gsap.set(heroTitle, { opacity: 1 });
+    gsap.from(heroTitle.querySelectorAll('.hero-char'), {
+        opacity: 0,
+        y: 50,
+        rotateX: -90,
+        stagger: 0.025,
+        duration: 0.55,
+        ease: 'back.out(1.4)',
+        delay: 0.2
+    });
+}
+
+// ── Hero: rest of elements ──
 gsap.timeline({ delay: 0.3 })
-    .to('.hero h1', {
-        opacity: 1,
-        y: 0,
-        duration: 1.0,
-        ease: 'power3.out'
-    })
     .to('.hero-tagline', {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        ease: 'power3.out'
-    }, '-=0.5')
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: 0.7
+    })
     .to('.hero-subtitle', {
         opacity: 1,
         y: 0,
@@ -491,83 +505,78 @@ gsap.utils.toArray('.stat-number').forEach((el) => {
 });
 
 // ============================================
-// PAGE LOADER
+// SECTION IMAGE — CINEMATIC PARALLAX SCRUB
 // ============================================
-window.addEventListener('load', () => {
-    const loader = document.getElementById('pageLoader');
-    setTimeout(() => {
-        loader.classList.add('hidden');
-        document.body.classList.remove('loading');
-    }, 800);
-});
-
-// ============================================
-// IMAGE ANIMATIONS WITH GSAP
-// ============================================
-gsap.registerPlugin(ScrollTrigger);
-
-// Animate section images with smooth scale and fade
+// Each section image starts slightly zoomed-in and shifts vertically
+// as you scroll, creating a cinematic parallax effect (gsap-scrolltrigger skill)
 document.querySelectorAll('.section-image-container').forEach((container) => {
     const image = container.querySelector('.section-image');
 
+    // Reveal container
     gsap.fromTo(container,
-        {
-            opacity: 0,
-            y: 60,
-            scale: 0.95
-        },
-        {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: container,
-                start: 'top 80%',
-                end: 'top 20%',
-                toggleActions: 'play none none reverse'
-            }
-        }
-    );
-
-    // Subtle parallax effect on scroll
-    if (image) {
-        gsap.to(image, {
-            y: -30,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: container,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 1
-            }
-        });
-    }
-});
-
-// Animate therapy product images with elegant fade and scale
-document.querySelectorAll('.therapy-image-wrapper').forEach((wrapper, index) => {
-    gsap.fromTo(wrapper,
-        {
-            opacity: 0,
-            scale: 0.9,
-            y: 30
-        },
+        { opacity: 0, scale: 0.96 },
         {
             opacity: 1,
             scale: 1,
-            y: 0,
-            duration: 0.8,
-            delay: index * 0.1,
+            duration: 1.0,
             ease: 'power2.out',
             scrollTrigger: {
-                trigger: wrapper,
+                trigger: container,
                 start: 'top 85%',
                 toggleActions: 'play none none reverse'
             }
         }
     );
+
+    // Parallax on the image inside (scrub = tied to scroll progress)
+    if (image) {
+        gsap.fromTo(image,
+            { yPercent: -8 },
+            {
+                yPercent: 8,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: container,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1.5
+                }
+            }
+        );
+    }
+});
+
+// ============================================
+// MAGNETIC 3D TILT — CARDS
+// ============================================
+// Cards respond to cursor position with a subtle 3D tilt (ui-ux-pro-max: animation conveys meaning)
+document.querySelectorAll('.therapy-card, .differentiator-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / (rect.width / 2);
+        const dy = (e.clientY - cy) / (rect.height / 2);
+        gsap.to(card, {
+            rotateY: dx * 8,
+            rotateX: -dy * 8,
+            scale: 1.02,
+            duration: 0.3,
+            ease: 'power2.out',
+            transformPerspective: 900,
+            overwrite: 'auto'
+        });
+    });
+    card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+            rotateX: 0,
+            rotateY: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: 'elastic.out(1, 0.5)',
+            overwrite: 'auto'
+        });
+    });
 });
 
 // ============================================
