@@ -1,43 +1,4 @@
 // ============================================
-// EVENT POPUP MODAL
-// ============================================
-document.addEventListener('DOMContentLoaded', () => {
-    const eventPopup = document.getElementById('eventPopup');
-    const closeButton = document.getElementById('closeEventPopup');
-
-    // Show popup after a short delay (allows page to load smoothly)
-    setTimeout(() => {
-        eventPopup.classList.add('active');
-        // Prevent body scroll when popup is open
-        document.body.style.overflow = 'hidden';
-    }, 500);
-
-    // Close popup function
-    const closePopup = () => {
-        eventPopup.classList.remove('active');
-        // Re-enable body scroll
-        document.body.style.overflow = '';
-    };
-
-    // Close on button click
-    closeButton.addEventListener('click', closePopup);
-
-    // Close on overlay click (clicking outside the popup content)
-    eventPopup.addEventListener('click', (e) => {
-        if (e.target === eventPopup) {
-            closePopup();
-        }
-    });
-
-    // Close on ESC key press
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && eventPopup.classList.contains('active')) {
-            closePopup();
-        }
-    });
-});
-
-// ============================================
 // LANGUAGE TOGGLE
 // ============================================
 let activeLang = 'es';
@@ -351,37 +312,31 @@ document.addEventListener('DOMContentLoaded', () => {
 gsap.registerPlugin(ScrollTrigger);
 
 // Hero animations
-gsap.timeline()
-    .to('.hero-logo', {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power3.out'
-    })
+gsap.timeline({ delay: 0.3 })
     .to('.hero h1', {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 1.0,
         ease: 'power3.out'
-    }, '-=0.4')
+    })
     .to('.hero-tagline', {
         opacity: 1,
         y: 0,
         duration: 0.8,
         ease: 'power3.out'
-    }, '-=0.6')
+    }, '-=0.5')
     .to('.hero-subtitle', {
         opacity: 1,
         y: 0,
         duration: 0.8,
         ease: 'power3.out'
-    }, '-=0.6')
-    .to('.hero-ctas', {
+    }, '-=0.5')
+    .to('.hero-buttons', {
         opacity: 1,
         y: 0,
         duration: 0.8,
         ease: 'power3.out'
-    }, '-=0.5');
+    }, '-=0.4');
 
 // Parallax effect for hero background
 gsap.to('.hero-background', {
@@ -502,6 +457,37 @@ gsap.utils.toArray('.faq-item').forEach((item, index) => {
         delay: index * 0.1,
         ease: 'power3.out'
     });
+});
+
+// ============================================
+// STAT COUNTER ANIMATION
+// ============================================
+gsap.utils.toArray('.stat-number').forEach((el) => {
+    const text = el.textContent.trim();
+    const numMatch = text.match(/[\d.]+/);
+    if (!numMatch) return;
+    const target = parseFloat(numMatch[0]);
+    const prefix = text.split(numMatch[0])[0];
+    const suffix = text.split(numMatch[0])[1] || '';
+
+    gsap.fromTo(el,
+        { innerText: 0 },
+        {
+            innerText: target,
+            duration: 2,
+            ease: 'power2.out',
+            snap: { innerText: Number.isInteger(target) ? 1 : 0.1 },
+            scrollTrigger: {
+                trigger: el,
+                start: 'top 80%',
+                once: true
+            },
+            onUpdate() {
+                const val = parseFloat(this.targets()[0].innerText);
+                el.textContent = prefix + (Number.isInteger(target) ? Math.round(val) : val.toFixed(1)) + suffix;
+            }
+        }
+    );
 });
 
 // ============================================
