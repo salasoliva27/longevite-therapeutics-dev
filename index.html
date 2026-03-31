@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Longevité Therapeutics - Medicina funcional, nutrición y ciencia de la longevidad en Ciudad de México">
+    <title>Longevité Therapeutics | Medicina Funcional y Longevidad</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Event Popup Modal -->
+    <div class="event-popup-overlay" id="eventPopup">
+        <div class="event-popup-content">
+            <button class="event-popup-close" id="closeEventPopup" aria-label="Close popup">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="event-popup-image-wrapper">
+                <img src="images/events/invite_lt_openning_event.jpg" alt="Longevité Therapeutics Opening Event" class="event-popup-image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-text">LONGEVITÉ</span>
+            </div>
+
+            <nav id="mainNav">
+                <a href="#hero">
+                    <span class="lang-es">Inicio</span>
+                    <span class="lang-en hidden">Home</span>
+                </a>
+                <a href="#about">
+                    <span class="lang-es">Nosotros</span>
+                    <span class="lang-en hidden">About</span>
+                </a>
+                <a href="#therapies">
+                    <span class="lang-es">Terapias</span>
+                    <span class="lang-en hidden">Therapies</span>
+                </a>
+                <a href="#contact">
+                    <span class="lang-es">Contacto</span>
+                    <span class="lang-en hidden">Contact</span>
+                </a>
+
+                <div class="language-toggle">
+                    <button class="lang-btn active" data-lang="es">ES</button>
+                    <span class="separator">|</span>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-background parallax" data-speed="0.5"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">LONGEVITÉ THERAPEUTICS</h1>
+            <p class="hero-tagline">
+                <span class="lang-es">Longevidad con ciencia y propósito</span>
+                <span class="lang-en hidden">Longevity with science and purpose</span>
+            </p>
+            <p class="hero-subtitle">
+                <span class="lang-es">Medicina funcional, nutrición y ciencia de la longevidad</span>
+                <span class="lang-en hidden">Functional medicine, nutrition, and longevity science</span>
+            </p>
+            <div class="hero-buttons">
+                <a href="#therapies" class="btn btn-primary">
+                    <span class="lang-es">Conoce Nuestras Terapias</span>
+                    <span class="lang-en hidden">Explore Our Therapies</span>
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span class="lang-es">Agendar Cita</span>
+                    <span class="lang-en hidden">Book Appointment</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="section-title fade-in">
+                <span class="lang-es">¿Quiénes Somos?</span>
+                <span class="lang-en hidden">Who We Are</span>
+            </h2>
+
+            <p class="about-intro fade-in">
+                <span class="lang-es">En Longevité Therapeutics integramos medicina funcional, nutrición avanzada y ciencia de la longevidad para ayudarte a vivir más años con mayor vitalidad. Nuestro enfoque personalizado identifica las causas raíz de los desequilibrios de salud y ofrece terapias basadas en evidencia que optimizan tu bienestar a nivel celular.</span>
+                <span class="lang-en hidden">At Longevité Therapeutics, we integrate functional medicine, advanced nutrition, and longevity science to help you live more years with greater vitality. Our personalized approach identifies the root causes of health imbalances and offers evidence-based therapies that optimize your well-being at the cellular level.</span>
+            </p>
+
+            <!-- Clinic Image -->
+            <div class="section-image-container fade-in">
+                <img src="images/clinic/waiting_chairs.jpg" alt="Longevité Therapeutics Waiting Area" class="section-image">
+            </div>
+
+            <div class="differentiators-grid">
+                <div class="differentiator-card fade-in">
+                    <div class="card-icon">🔬</div>
+                    <h3>
+                        <span class="lang-es">Ciencia de Vanguardia</span>
+                        <span class="lang-en hidden">Cutting-Edge Science</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Utilizamos investigación avanzada y terapias respaldadas científicamente, incorporando los últimos hallazgos en medicina funcional y longevidad para ofrecerte tratamientos de clase mundial.</span>
+                        <span class="lang-en hidden">We use advanced research and scientifically-backed therapies, incorporating the latest findings in functional medicine and longevity to offer you world-class treatments.</span>
+                    </p>
+                </div>
+
+                <div class="differentiator-card fade-in">
+                    <div class="card-icon">⚕️</div>
+                    <h3>
+                        <span class="lang-es">Protocolos de Excelencia</span>
+                        <span class="lang-en hidden">Excellence Protocols</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Mantenemos una estandarización rigurosa y control de calidad en cada terapia. Nuestros protocolos siguen los más altos estándares internacionales de seguridad y eficacia.</span>
+                        <span class="lang-en hidden">We maintain rigorous standardization and quality control in every therapy. Our protocols follow the highest international standards of safety and efficacy.</span>
+                    </p>
+                </div>
+
+                <div class="differentiator-card fade-in">
+                    <div class="card-icon">💚</div>
+                    <h3>
+                        <span class="lang-es">Acompañamiento Personalizado</span>
+                        <span class="lang-en hidden">Personalized Support</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Diseñamos planes integrales adaptados a tus necesidades individuales, enfocados en longevidad, energía y bienestar sostenible. Te acompañamos en cada paso de tu transformación.</span>
+                        <span class="lang-en hidden">We design comprehensive plans adapted to your individual needs, focused on longevity, energy, and sustainable wellness. We accompany you at every step of your transformation.</span>
+                    </p>
+                </div>
+
+                <div class="differentiator-card fade-in">
+                    <div class="card-icon">🌟</div>
+                    <h3>
+                        <span class="lang-es">Comunidad Innovadora</span>
+                        <span class="lang-en hidden">Innovative Community</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Formamos parte de una red global de medicina funcional en constante evolución. Compartimos conocimiento y mejores prácticas para guiarte hacia una vida más larga y plena.</span>
+                        <span class="lang-en hidden">We are part of a global functional medicine network in constant evolution. We share knowledge and best practices to guide you toward a longer, fuller life.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dr. Terry Grossman Banner -->
+            <div class="authority-banner fade-in">
+                <div class="banner-content">
+                    <h3>
+                        <span class="lang-es">Respaldados por los protocolos del Dr. Terry Grossman</span>
+                        <span class="lang-en hidden">Backed by Dr. Terry Grossman's protocols</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Autoridad global en longevidad y medicina funcional desde 1970, coautor con Ray Kurzweil de obras fundamentales sobre extensión de la vida. Integramos sus protocolos con inteligencia artificial y los más altos estándares internacionales de seguridad para garantizar resultados óptimos.</span>
+                        <span class="lang-en hidden">Global authority in longevity and functional medicine since 1970, co-author with Ray Kurzweil of fundamental works on life extension. We integrate his protocols with artificial intelligence and the highest international safety standards to guarantee optimal results.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="philosophy section">
+        <div class="container">
+            <h2 class="section-title fade-in">
+                <span class="lang-es">Nuestra Filosofía</span>
+                <span class="lang-en hidden">Our Philosophy</span>
+            </h2>
+
+            <div class="philosophy-grid">
+                <div class="philosophy-column fade-in">
+                    <h3>
+                        <span class="lang-es">Medicina Funcional</span>
+                        <span class="lang-en hidden">Functional Medicine</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <span class="lang-es">Identifica y trata las causas raíz, no solo los síntomas superficiales</span>
+                            <span class="lang-en hidden">Identifies and treats root causes, not just superficial symptoms</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">Reconoce la interconexión entre nutrición, hormonas, salud intestinal, sueño, estrés y estilo de vida</span>
+                            <span class="lang-en hidden">Recognizes the interconnection between nutrition, hormones, gut health, sleep, stress, and lifestyle</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">Los tratamientos incluyen planes de nutrición personalizados, suplementación estratégica, terapias intravenosas y ajustes de estilo de vida</span>
+                            <span class="lang-en hidden">Treatments include personalized nutrition plans, strategic supplementation, intravenous therapies, and lifestyle adjustments</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="philosophy-column fade-in">
+                    <h3>
+                        <span class="lang-es">Medicina de Longevidad</span>
+                        <span class="lang-en hidden">Longevity Medicine</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <span class="lang-es">Enfoque basado en evidencia científica para extender el período de vida saludable (healthspan)</span>
+                            <span class="lang-en hidden">Evidence-based approach to extend the period of healthy life (healthspan)</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">Protocolos personalizados diseñados para optimizar vitalidad y prevenir enfermedades antes de que aparezcan</span>
+                            <span class="lang-en hidden">Personalized protocols designed to optimize vitality and prevent diseases before they appear</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">Integración de inteligencia artificial para monitoreo avanzado y ajuste continuo de tratamientos</span>
+                            <span class="lang-en hidden">Integration of artificial intelligence for advanced monitoring and continuous treatment adjustment</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conditions Section -->
+    <section id="conditions" class="conditions section">
+        <div class="container">
+            <h2 class="section-title fade-in">
+                <span class="lang-es">Condiciones Frecuentes que Tratamos</span>
+                <span class="lang-en hidden">Common Conditions We Treat</span>
+            </h2>
+
+            <div class="conditions-grid">
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Fatiga crónica</span>
+                        <span class="lang-en hidden">Chronic fatigue</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Estado de agotamiento persistente que no mejora con descanso. Abordamos las causas subyacentes como deficiencias nutricionales, disfunción mitocondrial y desequilibrios hormonales para restaurar tus niveles de energía.</p>
+                        <p class="lang-en hidden">Persistent state of exhaustion that doesn't improve with rest. We address underlying causes such as nutritional deficiencies, mitochondrial dysfunction, and hormonal imbalances to restore your energy levels.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Salud intestinal</span>
+                        <span class="lang-en hidden">Gut health</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">El intestino es fundamental para la inmunidad y el bienestar general. Tratamos disbiosis, permeabilidad intestinal y problemas digestivos con protocolos personalizados que restauran el equilibrio del microbioma.</p>
+                        <p class="lang-en hidden">The gut is fundamental for immunity and overall well-being. We treat dysbiosis, intestinal permeability, and digestive issues with personalized protocols that restore microbiome balance.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Neuroprotección</span>
+                        <span class="lang-en hidden">Neuroprotection</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Protegemos la función cerebral y prevenimos el deterioro cognitivo mediante terapias que optimizan la salud neuronal, reducen la neuroinflamación y apoyan la plasticidad cerebral para mantener tu mente aguda.</p>
+                        <p class="lang-en hidden">We protect brain function and prevent cognitive decline through therapies that optimize neuronal health, reduce neuroinflammation, and support brain plasticity to keep your mind sharp.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Higiene del sueño</span>
+                        <span class="lang-en hidden">Sleep hygiene</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">El sueño reparador es esencial para la longevidad. Identificamos alteraciones del ritmo circadiano, deficiencias de neurotransmisores y factores ambientales que afectan tu descanso para mejorar la calidad del sueño.</p>
+                        <p class="lang-en hidden">Restorative sleep is essential for longevity. We identify circadian rhythm disruptions, neurotransmitter deficiencies, and environmental factors affecting your rest to improve sleep quality.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Deshidratación</span>
+                        <span class="lang-en hidden">Dehydration</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">La hidratación celular óptima es vital para todas las funciones corporales. Corregimos desequilibrios de electrolitos y volumen con terapia intravenosa que restaura la hidratación a nivel celular rápidamente.</p>
+                        <p class="lang-en hidden">Optimal cellular hydration is vital for all bodily functions. We correct electrolyte and volume imbalances with intravenous therapy that rapidly restores hydration at the cellular level.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Salud preventiva</span>
+                        <span class="lang-en hidden">Preventive health</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Anticiparse a las enfermedades es más efectivo que tratarlas. Realizamos análisis avanzados para detectar desequilibrios tempranos y diseñamos intervenciones preventivas personalizadas basadas en tu perfil único.</p>
+                        <p class="lang-en hidden">Anticipating diseases is more effective than treating them. We perform advanced analysis to detect early imbalances and design personalized preventive interventions based on your unique profile.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Salud cardiovascular</span>
+                        <span class="lang-en hidden">Cardiovascular health</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Optimizamos la salud del corazón y los vasos sanguíneos mediante control de inflamación vascular, gestión de lípidos y mejora de la función endotelial para prevenir enfermedades cardiovasculares.</p>
+                        <p class="lang-en hidden">We optimize heart and blood vessel health through vascular inflammation control, lipid management, and endothelial function improvement to prevent cardiovascular diseases.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Resistencia a la insulina</span>
+                        <span class="lang-en hidden">Insulin resistance</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Precursor de diabetes tipo 2 y síndrome metabólico. Revertimos la resistencia a la insulina con intervenciones nutricionales, suplementación dirigida y optimización del metabolismo de la glucosa.</p>
+                        <p class="lang-en hidden">Precursor to type 2 diabetes and metabolic syndrome. We reverse insulin resistance with nutritional interventions, targeted supplementation, and glucose metabolism optimization.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Metabolismo y Energía</span>
+                        <span class="lang-en hidden">Metabolism and Energy</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Optimizamos la función mitocondrial, la producción de ATP y el metabolismo celular para maximizar tus niveles de energía, mejorar la composición corporal y acelerar la recuperación física.</p>
+                        <p class="lang-en hidden">We optimize mitochondrial function, ATP production, and cellular metabolism to maximize your energy levels, improve body composition, and accelerate physical recovery.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Salud Cerebral y Cognitiva</span>
+                        <span class="lang-en hidden">Brain and Cognitive Health</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Mejoramos memoria, concentración y claridad mental mediante apoyo neurológico integral. Abordamos inflamación cerebral, optimización de neurotransmisores y nutrición cerebral para rendimiento cognitivo óptimo.</p>
+                        <p class="lang-en hidden">We improve memory, concentration, and mental clarity through comprehensive neurological support. We address brain inflammation, neurotransmitter optimization, and brain nutrition for optimal cognitive performance.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Inmunidad y Regulación Inflamatoria</span>
+                        <span class="lang-en hidden">Immunity and Inflammatory Regulation</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Fortalecemos las defensas naturales y modulamos la inflamación crónica que subyace a muchas enfermedades. Equilibramos la respuesta inmune para protección óptima sin sobreactivación.</p>
+                        <p class="lang-en hidden">We strengthen natural defenses and modulate chronic inflammation underlying many diseases. We balance immune response for optimal protection without overactivation.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Salud Ósea y Musculoesquelética</span>
+                        <span class="lang-en hidden">Bone and Musculoskeletal Health</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Preservamos densidad ósea, función muscular y salud articular mediante nutrición específica, optimización hormonal y suplementación dirigida para mantener movilidad y fuerza con el tiempo.</p>
+                        <p class="lang-en hidden">We preserve bone density, muscle function, and joint health through specific nutrition, hormonal optimization, and targeted supplementation to maintain mobility and strength over time.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Deficiencia de vitamina D</span>
+                        <span class="lang-en hidden">Vitamin D deficiency</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Condición extremadamente común que afecta inmunidad, estado de ánimo y salud ósea. Corregimos niveles mediante suplementación adecuada y monitoreo para alcanzar rangos óptimos, no solo normales.</p>
+                        <p class="lang-en hidden">Extremely common condition affecting immunity, mood, and bone health. We correct levels through proper supplementation and monitoring to achieve optimal ranges, not just normal.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Ferropenia sin anemia</span>
+                        <span class="lang-en hidden">Iron deficiency without anemia</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Deficiencia de hierro que causa fatiga y bajo rendimiento incluso antes de desarrollar anemia. Restauramos reservas de hierro con terapia intravenosa para recuperación rápida y efectiva.</p>
+                        <p class="lang-en hidden">Iron deficiency causing fatigue and poor performance even before developing anemia. We restore iron reserves with intravenous therapy for fast and effective recovery.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Estilo de Vida y Hábitos</span>
+                        <span class="lang-en hidden">Lifestyle and Habits</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Los hábitos diarios determinan tu salud a largo plazo. Te guiamos en optimización de nutrición, ejercicio, manejo del estrés y rutinas que promueven longevidad basándonos en evidencia científica.</p>
+                        <p class="lang-en hidden">Daily habits determine your long-term health. We guide you in optimizing nutrition, exercise, stress management, and routines that promote longevity based on scientific evidence.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Prevención Avanzada</span>
+                        <span class="lang-en hidden">Advanced Prevention</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Utilizamos biomarcadores avanzados, análisis genético y evaluaciones funcionales para identificar riesgos años antes de que aparezcan síntomas, permitiendo intervención temprana y prevención efectiva.</p>
+                        <p class="lang-en hidden">We use advanced biomarkers, genetic analysis, and functional assessments to identify risks years before symptoms appear, enabling early intervention and effective prevention.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Recuperación en deportes de alto rendimiento</span>
+                        <span class="lang-en hidden">High-performance sports recovery</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Aceleramos recuperación muscular, reducimos inflamación y optimizamos rendimiento atlético mediante terapias intravenosas, nutrición deportiva avanzada y protocolos de recuperación personalizados.</p>
+                        <p class="lang-en hidden">We accelerate muscle recovery, reduce inflammation, and optimize athletic performance through intravenous therapies, advanced sports nutrition, and personalized recovery protocols.</p>
+                    </div>
+                </div>
+                <div class="condition-item fade-in">
+                    <div class="condition-header">
+                        <span class="lang-es">Recuperación post-cirugía</span>
+                        <span class="lang-en hidden">Post-surgery recovery</span>
+                        <span class="condition-toggle">+</span>
+                    </div>
+                    <div class="condition-description">
+                        <p class="lang-es">Aceleramos cicatrización, fortalecemos el sistema inmune y restauramos la función normal tras procedimientos quirúrgicos con nutrición intravenosa, antioxidantes y protocolos de regeneración tisular.</p>
+                        <p class="lang-en hidden">We accelerate healing, strengthen the immune system, and restore normal function after surgical procedures with intravenous nutrition, antioxidants, and tissue regeneration protocols.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Therapies Section -->
+    <section id="therapies" class="therapies section">
+        <div class="container">
+            <h2 class="section-title fade-in">
+                <span class="lang-es">Conoce Nuestras Terapias Intravenosas</span>
+                <span class="lang-en hidden">Explore Our Intravenous Therapies</span>
+            </h2>
+
+            <!-- Therapies Hero Image -->
+            <div class="section-image-container fade-in">
+                <img src="images/clinic/treatment_chairs.jpg" alt="Longevité Therapeutics IV Therapy Room" class="section-image">
+            </div>
+
+            <div class="therapies-grid">
+                <div class="therapy-card fade-in">
+                    <div class="therapy-image-wrapper">
+                        <img src="images/products/Myers.jpg" alt="Myers' Cocktail IV Therapy" class="therapy-image">
+                    </div>
+                    <h3>Myers' Cocktail</h3>
+                    <p>
+                        <span class="lang-es">Mezcla clásica de vitaminas y minerales esenciales que potencia la energía celular y promueve el bienestar general. Ideal para recuperación, vitalidad y soporte inmunológico.</span>
+                        <span class="lang-en hidden">Classic blend of essential vitamins and minerals that enhances cellular energy and promotes overall well-being. Ideal for recovery, vitality, and immune support.</span>
+                    </p>
+                </div>
+
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">✨</div>
+                    <h3>
+                        <span class="lang-es">Glutatión</span>
+                        <span class="lang-en hidden">Glutathione</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Antioxidante maestro del cuerpo, fundamental para la detoxificación celular profunda, protección contra el estrés oxidativo y optimización de la salud hepática. Mejora la calidad de la piel y apoya la función inmune.</span>
+                        <span class="lang-en hidden">The body's master antioxidant, essential for deep cellular detoxification, protection against oxidative stress, and optimization of liver health. Improves skin quality and supports immune function.</span>
+                    </p>
+                </div>
+
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">⚡</div>
+                    <h3>NAD+</h3>
+                    <p>
+                        <span class="lang-es">Coenzima crítica que apoya el metabolismo energético mitocondrial, la reparación del ADN y las funciones celulares de longevidad. Esencial para combatir el envejecimiento a nivel molecular y mejorar la función cognitiva.</span>
+                        <span class="lang-en hidden">Critical coenzyme that supports mitochondrial energy metabolism, DNA repair, and cellular longevity functions. Essential for combating aging at the molecular level and improving cognitive function.</span>
+                    </p>
+                </div>
+
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">🍊</div>
+                    <h3>
+                        <span class="lang-es">Vitamina C IV</span>
+                        <span class="lang-en hidden">Vitamin C IV</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Refuerzo antioxidante de alto impacto que fortalece el sistema inmunológico, acelera la síntesis de colágeno y protege contra el daño celular. Alcanza niveles terapéuticos imposibles por vía oral.</span>
+                        <span class="lang-en hidden">High-impact antioxidant boost that strengthens the immune system, accelerates collagen synthesis, and protects against cellular damage. Achieves therapeutic levels impossible through oral intake.</span>
+                    </p>
+                </div>
+
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">💦</div>
+                    <h3>Rehydration IV</h3>
+                    <p>
+                        <span class="lang-es">Hidratación rápida y completa con reposición inmediata de electrolitos esenciales. Perfecta para recuperación deportiva, jet lag, deshidratación severa o preparación antes de eventos importantes.</span>
+                        <span class="lang-en hidden">Fast and complete hydration with immediate replenishment of essential electrolytes. Perfect for sports recovery, jet lag, severe dehydration, or preparation before important events.</span>
+                    </p>
+                </div>
+
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">🌟</div>
+                    <h3>Hangover</h3>
+                    <p>
+                        <span class="lang-es">Recuperación acelerada de energía, hidratación profunda y reposición de electrolitos y vitaminas clave. Alivia síntomas rápidamente para que recuperes tu día con vitalidad.</span>
+                        <span class="lang-en hidden">Accelerated energy recovery, deep hydration, and replenishment of key electrolytes and vitamins. Quickly relieves symptoms so you can reclaim your day with vitality.</span>
+                    </p>
+                </div>
+
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">🌸</div>
+                    <h3>Anti-Aging</h3>
+                    <p>
+                        <span class="lang-es">Fórmula especializada con nutrientes específicos para rejuvenecimiento celular, refuerzo antioxidante intensivo y protección contra el daño del envejecimiento. Optimiza la salud de la piel, energía y vitalidad desde el interior.</span>
+                        <span class="lang-en hidden">Specialized formula with specific nutrients for cellular rejuvenation, intensive antioxidant reinforcement, and protection against aging damage. Optimizes skin health, energy, and vitality from within.</span>
+                    </p>
+                </div>
+
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">🛡️</div>
+                    <h3>
+                        <span class="lang-es">Immune Recover</span>
+                        <span class="lang-en hidden">Immune Recovery</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Potente refuerzo inmunológico y recuperación acelerada de defensas naturales. Combina vitaminas, minerales y antioxidantes clave para fortalecer tu sistema inmune ante desafíos virales o bacterianos.</span>
+                        <span class="lang-en hidden">Powerful immune boost and accelerated recovery of natural defenses. Combines key vitamins, minerals, and antioxidants to strengthen your immune system against viral or bacterial challenges.</span>
+                    </p>
+                </div>
+
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">🩸</div>
+                    <h3>
+                        <span class="lang-es">Iron IV</span>
+                        <span class="lang-en hidden">Iron IV</span>
+                    </h3>
+                    <p>
+                        <span class="lang-es">Corrección efectiva de deficiencia de hierro y ferropenia, mejorando rápidamente los niveles de energía, función cognitiva y capacidad física. Ideal cuando la suplementación oral no es suficiente o bien tolerada.</span>
+                        <span class="lang-en hidden">Effective correction of iron deficiency and ferropenia, rapidly improving energy levels, cognitive function, and physical capacity. Ideal when oral supplementation is insufficient or not well tolerated.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientific Insights Section -->
+    <section id="insights" class="insights section">
+        <div class="container">
+            <h2 class="section-title fade-in">
+                <span class="lang-es">¿Sabías qué?</span>
+                <span class="lang-en hidden">Did You Know?</span>
+            </h2>
+
+            <div class="insights-grid">
+                <div class="insight-card fade-in">
+                    <div class="insight-stat">
+                        <span class="stat-number">NAD+</span>
+                    </div>
+                    <h3>
+                        <span class="lang-es">Los niveles de NAD+ disminuyen con la edad</span>
+                        <span class="lang-en hidden">NAD+ levels decline with age</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <span class="lang-es">~40% de disminución a los 50 años</span>
+                            <span class="lang-en hidden">~40% decrease by age 50</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">~98% de disminución a los 80 años</span>
+                            <span class="lang-en hidden">~98% decrease by age 80</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">Relacionado con fatiga, menor rendimiento físico, envejecimiento acelerado y declive cognitivo</span>
+                            <span class="lang-en hidden">Related to fatigue, lower physical performance, accelerated aging, and cognitive decline</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">La suplementación intravenosa puede restaurar niveles juveniles y mejorar la función celular</span>
+                            <span class="lang-en hidden">Intravenous supplementation can restore youthful levels and improve cellular function</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="insight-card fade-in">
+                    <div class="insight-stat">
+                        <span class="stat-number">8/10</span>
+                    </div>
+                    <h3>
+                        <span class="lang-es">Deficiencia de Vitamina D en México</span>
+                        <span class="lang-en hidden">Vitamin D Deficiency in Mexico</span>
+                    </h3>
+                    <ul>
+                        <li>
+                            <span class="lang-es">8 de cada 10 personas tienen deficiencia de vitamina D</span>
+                            <span class="lang-en hidden">8 out of 10 people have vitamin D deficiency</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">Vinculada a depresión, fatiga crónica y declive cognitivo</span>
+                            <span class="lang-en hidden">Linked to depression, chronic fatigue, and cognitive decline</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">Esencial para salud inmunológica, fortaleza ósea y sensibilidad a la insulina</span>
+                            <span class="lang-en hidden">Essential for immune health, bone strength, and insulin sensitivity</span>
+                        </li>
+                        <li>
+                            <span class="lang-es">La optimización de niveles mejora el estado de ánimo, energía y prevención de enfermedades</span>
+                            <span class="lang-en hidden">Optimizing levels improves mood, energy, and disease prevention</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits section">
+        <div class="container">
+            <h2 class="section-title fade-in">
+                <span class="lang-es">Beneficios Esperados</span>
+                <span class="lang-en hidden">Expected Benefits</span>
+            </h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>
+                        <span class="lang-es">Aumento de energía y vitalidad</span>
+                        <span class="lang-en hidden">Increased energy and vitality</span>
+                    </h3>
+                </div>
+
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>
+                        <span class="lang-es">Función cognitiva y memoria mejoradas</span>
+                        <span class="lang-en hidden">Improved cognitive function and memory</span>
+                    </h3>
+                </div>
+
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">🛡️</div>
+                    <h3>
+                        <span class="lang-es">Sistema inmunológico más fuerte</span>
+                        <span class="lang-en hidden">Stronger immune system</span>
+                    </h3>
+                </div>
+
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3>
+                        <span class="lang-es">Recuperación más rápida post-cirugía o enfermedad</span>
+                        <span class="lang-en hidden">Faster recovery post-surgery or illness</span>
+                    </h3>
+                </div>
+
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">🌿</div>
+                    <h3>
+                        <span class="lang-es">Prevención de enfermedades a largo plazo</span>
+                        <span class="lang-en hidden">Long-term disease prevention</span>
+                    </h3>
+                </div>
+
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">🔬</div>
+                    <h3>
+                        <span class="lang-es">Reparación celular mejorada</span>
+                        <span class="lang-en hidden">Enhanced cellular repair</span>
+                    </h3>
+                </div>
+
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">✨</div>
+                    <h3>
+                        <span class="lang-es">Salud de la piel</span>
+                        <span class="lang-en hidden">Skin health</span>
+                    </h3>
+                </div>
+
+                <div class="benefit-item fade-in">
+                    <div class="benefit-icon">💡</div>
+                    <h3>
+                        <span class="lang-es">Claridad mental</span>
+                        <span class="lang-en hidden">Mental clarity</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq section">
+        <div class="container">
+            <h2 class="section-title fade-in">
+                <span class="lang-es">Preguntas Frecuentes</span>
+                <span class="lang-en hidden">Frequently Asked Questions</span>
+            </h2>
+
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span class="lang-es">¿Con qué frecuencia se hacen las terapias IV?</span>
+                        <span class="lang-en hidden">How often should IV therapies be done?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            <span class="lang-es">La frecuencia depende de tu estado de salud actual y tus objetivos específicos. Generalmente, iniciamos con una fase intensiva semanal o quincenal para optimizar niveles, y posteriormente pasamos a un protocolo de mantenimiento mensual. Durante tu consulta inicial, diseñamos un plan personalizado basado en tus análisis de laboratorio y necesidades individuales.</span>
+                            <span class="lang-en hidden">The frequency depends on your current health status and specific goals. Generally, we start with an intensive weekly or bi-weekly phase to optimize levels, and then transition to a monthly maintenance protocol. During your initial consultation, we design a personalized plan based on your laboratory analysis and individual needs.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span class="lang-es">¿Existen efectos secundarios?</span>
+                        <span class="lang-en hidden">Are there any side effects?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            <span class="lang-es">Las terapias intravenosas son muy seguras cuando se administran por profesionales capacitados. Ocasionalmente puede haber ligera molestia en el sitio de punción o una sensación temporal de calor durante la infusión, síntomas que son completamente pasajeros. Seguimos protocolos estrictos de seguridad y realizamos evaluación médica completa antes de cualquier tratamiento para minimizar cualquier riesgo.</span>
+                            <span class="lang-en hidden">Intravenous therapies are very safe when administered by trained professionals. Occasionally there may be slight discomfort at the puncture site or a temporary sensation of warmth during infusion, symptoms that are completely transient. We follow strict safety protocols and perform complete medical evaluation before any treatment to minimize any risk.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span class="lang-es">¿Cuál es la diferencia entre vía oral e intravenosa?</span>
+                        <span class="lang-en hidden">What is the difference between oral and intravenous routes?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            <span class="lang-es">La diferencia es significativa. La vía intravenosa asegura absorción del 100% de los nutrientes directamente al torrente sanguíneo, resultando en efectos más rápidos y niveles terapéuticos mucho más altos. La vía oral depende de la digestión y puede tener una absorción de solo 10-30%, especialmente en personas con problemas intestinales. Para objetivos terapéuticos serios, la vía IV es incomparablemente más efectiva.</span>
+                            <span class="lang-en hidden">The difference is significant. The intravenous route ensures 100% absorption of nutrients directly into the bloodstream, resulting in faster effects and much higher therapeutic levels. The oral route depends on digestion and may have absorption of only 10-30%, especially in people with intestinal problems. For serious therapeutic objectives, the IV route is incomparably more effective.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span class="lang-es">¿Se necesitan estudios previos?</span>
+                        <span class="lang-en hidden">Are previous studies needed?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            <span class="lang-es">Sí, absolutamente. Realizamos una evaluación clínica completa y solicitamos estudios de laboratorio específicos antes de iniciar cualquier protocolo de terapia intravenosa. Esto nos permite personalizar completamente el tratamiento a tus necesidades únicas, identificar deficiencias específicas y garantizar la máxima seguridad y efectividad. No trabajamos con protocolos genéricos; cada plan es diseñado científicamente para ti.</span>
+                            <span class="lang-en hidden">Yes, absolutely. We perform a complete clinical evaluation and request specific laboratory studies before starting any intravenous therapy protocol. This allows us to completely personalize the treatment to your unique needs, identify specific deficiencies, and guarantee maximum safety and effectiveness. We don't work with generic protocols; each plan is scientifically designed for you.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span class="lang-es">¿Cuándo notaré los beneficios?</span>
+                        <span class="lang-en hidden">When will I notice the benefits?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            <span class="lang-es">El tiempo de respuesta varía según la terapia y tu estado inicial. Muchos pacientes experimentan mejoras notables de energía y claridad mental desde la primera sesión, especialmente con terapias como Myers' Cocktail, NAD+ o Rehydration. Beneficios más profundos como optimización inmunológica, reparación celular y mejoras metabólicas se perciben gradualmente a lo largo de varias sesiones. El monitoreo continuo nos permite ajustar el protocolo para resultados óptimos.</span>
+                            <span class="lang-en hidden">Response time varies depending on the therapy and your initial state. Many patients experience notable improvements in energy and mental clarity from the first session, especially with therapies like Myers' Cocktail, NAD+, or Rehydration. Deeper benefits like immune optimization, cellular repair, and metabolic improvements are perceived gradually over several sessions. Continuous monitoring allows us to adjust the protocol for optimal results.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span class="lang-es">¿Se puede combinar con tratamientos médicos actuales?</span>
+                        <span class="lang-en hidden">Can it be combined with current medical treatments?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            <span class="lang-es">Sí, la terapia intravenosa es altamente complementaria con la medicina convencional. De hecho, puede potenciar muchos tratamientos tradicionales y acelerar la recuperación. Trabajamos en coordinación con tu equipo médico actual para asegurar un enfoque integrado y seguro. Es importante informarnos sobre todos tus medicamentos actuales durante la evaluación inicial para optimizar la sinergia terapéutica.</span>
+                            <span class="lang-en hidden">Yes, intravenous therapy is highly complementary with conventional medicine. In fact, it can enhance many traditional treatments and accelerate recovery. We work in coordination with your current medical team to ensure an integrated and safe approach. It's important to inform us about all your current medications during the initial evaluation to optimize therapeutic synergy.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in">
+                    <button class="faq-question">
+                        <span class="lang-es">¿Hay contraindicaciones?</span>
+                        <span class="lang-en hidden">Are there contraindications?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            <span class="lang-es">Las contraindicaciones dependen de cada terapia específica. Personas con insuficiencia renal, hepática o cardiaca severa pueden requerir protocolos especiales o ajustes de dosis. Ciertas terapias no se recomiendan durante el embarazo o lactancia. Por esto es esencial la valoración médica inicial completa, donde evaluamos tu historial clínico detallado, medicaciones actuales y resultados de laboratorio para determinar el protocolo más seguro y efectivo para ti.</span>
+                            <span class="lang-en hidden">Contraindications depend on each specific therapy. People with severe renal, hepatic, or cardiac insufficiency may require special protocols or dose adjustments. Certain therapies are not recommended during pregnancy or lactation. This is why complete initial medical evaluation is essential, where we assess your detailed clinical history, current medications, and laboratory results to determine the safest and most effective protocol for you.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title fade-in">
+                <span class="lang-es">Contáctanos</span>
+                <span class="lang-en hidden">Contact Us</span>
+            </h2>
+
+            <div class="contact-grid">
+                <div class="contact-form-wrapper fade-in">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">
+                                <span class="lang-es">Nombre</span>
+                                <span class="lang-en hidden">Name</span>
+                            </label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <span class="lang-es">Correo Electrónico</span>
+                                <span class="lang-en hidden">Email</span>
+                            </label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">
+                                <span class="lang-es">Teléfono</span>
+                                <span class="lang-en hidden">Phone</span>
+                            </label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">
+                                <span class="lang-es">Mensaje</span>
+                                <span class="lang-en hidden">Message</span>
+                            </label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <span class="lang-es">Enviar Mensaje</span>
+                            <span class="lang-en hidden">Send Message</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-info-wrapper fade-in">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h3>
+                                    <span class="lang-es">Dirección</span>
+                                    <span class="lang-en hidden">Address</span>
+                                </h3>
+                                <p>Pedregal #47, Col. Lomas Virreyes<br>Ciudad de México</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h3>
+                                    <span class="lang-es">Teléfono</span>
+                                    <span class="lang-en hidden">Phone</span>
+                                </h3>
+                                <p><a href="tel:+525589303489">+52 55 8930 34893</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🌐</div>
+                            <div class="info-content">
+                                <h3>
+                                    <span class="lang-es">Sitio Web</span>
+                                    <span class="lang-en hidden">Website</span>
+                                </h3>
+                                <p><a href="https://www.longevitetherapeutics.com" target="_blank">www.longevitetherapeutics.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📱</div>
+                            <div class="info-content">
+                                <h3>Instagram</h3>
+                                <p><a href="https://instagram.com/longevitetherapeutics" target="_blank">@longevitetherapeutics</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>LONGEVITÉ THERAPEUTICS</h3>
+                    <p>
+                        <span class="lang-es">Medicina, nutrición y ciencia que se notan.</span>
+                        <span class="lang-en hidden">Medicine, nutrition and science that make a difference.</span>
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>
+                        <span class="lang-es">Enlaces Rápidos</span>
+                        <span class="lang-en hidden">Quick Links</span>
+                    </h4>
+                    <ul>
+                        <li><a href="#hero">
+                            <span class="lang-es">Inicio</span>
+                            <span class="lang-en hidden">Home</span>
+                        </a></li>
+                        <li><a href="#about">
+                            <span class="lang-es">Nosotros</span>
+                            <span class="lang-en hidden">About</span>
+                        </a></li>
+                        <li><a href="#therapies">
+                            <span class="lang-es">Terapias</span>
+                            <span class="lang-en hidden">Therapies</span>
+                        </a></li>
+                        <li><a href="#contact">
+                            <span class="lang-es">Contacto</span>
+                            <span class="lang-en hidden">Contact</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>
+                        <span class="lang-es">Síguenos</span>
+                        <span class="lang-en hidden">Follow Us</span>
+                    </h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/longevitetherapeutics" target="_blank" aria-label="Instagram">Instagram</a>
+                        <a href="https://www.longevitetherapeutics.com" target="_blank" aria-label="Website">Web</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Longevité Therapeutics. <span class="lang-es">Todos los derechos reservados.</span><span class="lang-en hidden">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

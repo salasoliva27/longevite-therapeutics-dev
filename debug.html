@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Longevité Therapeutics</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { padding: 20px; background: #f5f5f5; }
+        .debug-box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .debug-box h2 { margin-top: 0; color: #000; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .pass { background: #d4edda; border-left: 4px solid #28a745; }
+        .fail { background: #f8d7da; border-left: 4px solid #dc3545; }
+        .info { background: #d1ecf1; border-left: 4px solid #0c5460; }
+        button {
+            background: linear-gradient(135deg, #8B7355, #A89968);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover { opacity: 0.9; }
+        .section-preview {
+            border: 2px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Longevité Therapeutics - Debug Page</h1>
+
+    <div class="debug-box">
+        <h2>1. Language System Test</h2>
+        <button onclick="runLanguageTest()">Run Language Test</button>
+        <div id="lang-results"></div>
+    </div>
+
+    <div class="debug-box">
+        <h2>2. Sections Content Test</h2>
+        <button onclick="runSectionsTest()">Test All Sections</button>
+        <div id="sections-results"></div>
+    </div>
+
+    <div class="debug-box">
+        <h2>3. Animation Classes Test</h2>
+        <button onclick="runAnimationTest()">Test Animations</button>
+        <div id="animation-results"></div>
+    </div>
+
+    <div class="debug-box">
+        <h2>4. Live Preview - Conditions Section</h2>
+        <div class="section-preview">
+            <h3>Condiciones Frecuentes que Tratamos</h3>
+            <div class="conditions-grid">
+                <div class="condition-item fade-in">
+                    <span class="lang-es">Fatiga crónica</span>
+                    <span class="lang-en hidden">Chronic fatigue</span>
+                </div>
+                <div class="condition-item fade-in">
+                    <span class="lang-es">Salud intestinal</span>
+                    <span class="lang-en hidden">Gut health</span>
+                </div>
+                <div class="condition-item fade-in">
+                    <span class="lang-es">Neuroprotección</span>
+                    <span class="lang-en hidden">Neuroprotection</span>
+                </div>
+            </div>
+            <p class="info test-result">If you see 3 cards above with text, the CSS is working correctly!</p>
+        </div>
+    </div>
+
+    <div class="debug-box">
+        <h2>5. Live Preview - Therapy Card</h2>
+        <div class="section-preview">
+            <div class="therapies-grid" style="max-width: 400px;">
+                <div class="therapy-card fade-in">
+                    <div class="therapy-icon">💧</div>
+                    <h3>Myers' Cocktail</h3>
+                    <p>
+                        <span class="lang-es">Mezcla clásica de vitaminas y minerales para energía y bienestar general.</span>
+                        <span class="lang-en hidden">Classic blend of vitamins and minerals for energy and overall wellness.</span>
+                    </p>
+                </div>
+            </div>
+            <p class="info test-result">If you see a card above with icon and text, therapy cards are working!</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function runLanguageTest() {
+            const results = document.getElementById('lang-results');
+            const esElements = document.querySelectorAll('.lang-es');
+            const enElements = document.querySelectorAll('.lang-en');
+
+            const esVisible = Array.from(esElements).filter(el => {
+                const style = window.getComputedStyle(el);
+                return style.display !== 'none';
+            }).length;
+
+            const enVisible = Array.from(enElements).filter(el => {
+                const style = window.getComputedStyle(el);
+                return style.display !== 'none';
+            }).length;
+
+            results.innerHTML = `
+                <div class="test-result ${esElements.length > 0 ? 'pass' : 'fail'}">
+                    <strong>Spanish elements found:</strong> ${esElements.length}
+                </div>
+                <div class="test-result ${enElements.length > 0 ? 'pass' : 'fail'}">
+                    <strong>English elements found:</strong> ${enElements.length}
+                </div>
+                <div class="test-result ${esVisible > 0 ? 'pass' : 'fail'}">
+                    <strong>Spanish elements VISIBLE:</strong> ${esVisible}
+                </div>
+                <div class="test-result ${enVisible === 0 ? 'pass' : 'fail'}">
+                    <strong>English elements VISIBLE:</strong> ${enVisible} (should be 0)
+                </div>
+                <div class="test-result info">
+                    ${esVisible > 0 ? '✅ Spanish is showing correctly!' : '❌ Spanish is NOT showing - CSS problem!'}
+                </div>
+            `;
+        }
+
+        function runSectionsTest() {
+            const results = document.getElementById('sections-results');
+            const sections = [
+                { id: 'conditions', selector: '.condition-item', expected: 18 },
+                { id: 'therapies', selector: '.therapy-card', expected: 9 },
+                { id: 'benefits', selector: '.benefit-item', expected: 8 },
+                { id: 'faq', selector: '.faq-item', expected: 7 },
+                { id: 'insights', selector: '.insight-card', expected: 2 }
+            ];
+
+            let html = '';
+            sections.forEach(section => {
+                const elements = document.querySelectorAll(section.selector);
+                const pass = elements.length === section.expected;
+                html += `
+                    <div class="test-result ${pass ? 'pass' : 'fail'}">
+                        <strong>${section.id}:</strong> Found ${elements.length} items
+                        (expected ${section.expected}) ${pass ? '✅' : '❌'}
+                    </div>
+                `;
+            });
+
+            results.innerHTML = html;
+        }
+
+        function runAnimationTest() {
+            const results = document.getElementById('animation-results');
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const animatedElements = document.querySelectorAll('.fade-in.animate-in');
+
+            results.innerHTML = `
+                <div class="test-result info">
+                    <strong>Elements with .fade-in:</strong> ${fadeElements.length}
+                </div>
+                <div class="test-result ${animatedElements.length > 0 ? 'pass' : 'fail'}">
+                    <strong>Elements with .animate-in (visible):</strong> ${animatedElements.length}
+                </div>
+                <div class="test-result info">
+                    ${animatedElements.length === 0 ?
+                        '⚠️ No elements are animated yet. Scroll observer might not be running!' :
+                        '✅ Animation system is working!'}
+                </div>
+            `;
+        }
+
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                runLanguageTest();
+                runSectionsTest();
+                runAnimationTest();
+            }, 500);
+        });
+
+        // Make fade-in elements visible immediately for testing
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.classList.add('animate-in');
+            });
+        }, 100);
+    </script>
+</body>
+</html>
