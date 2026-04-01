@@ -943,6 +943,25 @@ section {
     z-index: 1;
 }
 
+/* Thematic symbol shown when product photo is absent */
+.bubble-symbol {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.72);
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+    line-height: 1;
+}
+
 .bubble-label {
     position: absolute;
     bottom: -26px;
