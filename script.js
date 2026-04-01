@@ -314,10 +314,13 @@ gsap.registerPlugin(ScrollTrigger);
 // ── Hero: letter-by-letter title reveal ──
 const heroTitle = document.querySelector('.hero h1');
 if (heroTitle) {
-    const raw = heroTitle.textContent;
-    heroTitle.innerHTML = raw.split('').map(ch =>
-        `<span class="hero-char" style="display:inline-block">${ch === ' ' ? '&nbsp;' : ch}</span>`
-    ).join('');
+    const raw = heroTitle.textContent.trim();
+    // Wrap each word in a nowrap span so line breaks only happen between words, not mid-word
+    heroTitle.innerHTML = raw.split(' ').map(word =>
+        `<span style="white-space:nowrap;display:inline-block">${
+            word.split('').map(ch => `<span class="hero-char" style="display:inline-block">${ch}</span>`).join('')
+        }</span>`
+    ).join(' ');
     gsap.set(heroTitle, { opacity: 1 });
     gsap.from(heroTitle.querySelectorAll('.hero-char'), {
         opacity: 0,
