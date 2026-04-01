@@ -491,22 +491,22 @@ section {
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    font-weight: 600;
+    font-size: clamp(2.4rem, 4.5vw, 3.5rem);
+    font-weight: 400;
     color: var(--color-black);
     margin-bottom: var(--spacing-lg);
     text-align: center;
-    letter-spacing: 0.01em;
-    line-height: 1.2;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
 }
 
 .section-subtitle {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    color: var(--color-text-light);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: rgba(102, 102, 102, 0.85);
     text-align: center;
     max-width: 800px;
     margin: 0 auto var(--spacing-lg);
-    line-height: 1.8;
+    line-height: 1.9;
 }
 
 /* Animate-in Classes */
@@ -560,63 +560,67 @@ section {
 }
 
 .differentiators-grid {
+    counter-reset: diff-counter;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 0;
     margin-bottom: var(--spacing-xl);
 }
 
 .differentiator-card {
-    background: var(--color-white);
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
-    transition: box-shadow var(--transition-smooth), border-color var(--transition-smooth);
-    border: 1px solid rgba(139, 115, 85, 0.1);
-    transform-style: preserve-3d;
-    will-change: transform;
+    counter-increment: diff-counter;
+    background: none;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid rgba(139, 115, 85, 0.18);
+    padding: 2.8rem 0 2.8rem 0;
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 0 2.5rem;
+    align-items: start;
+    transition: none;
 }
 
-.differentiator-card:hover {
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-gold);
+.differentiator-card::before {
+    content: counter(diff-counter, decimal-leading-zero);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 300;
+    color: rgba(168, 153, 104, 0.3);
+    line-height: 1;
+    padding-top: 4px;
 }
 
 .differentiator-icon,
 .card-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--color-olive), var(--color-gold));
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 2.2rem;
-    color: var(--color-white);
-    box-shadow: var(--shadow-sm);
+    display: none;
 }
 
 .differentiator-card h3 {
     font-family: var(--font-heading);
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 500;
     color: var(--color-black);
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.02em;
 }
 
 .differentiator-card p {
+    grid-column: 2;
     color: var(--color-text-light);
-    line-height: 1.7;
+    line-height: 1.8;
+    font-size: 1rem;
 }
 
 /* Scientific Authority Banner */
 .authority-banner {
-    background: linear-gradient(135deg, rgba(139, 115, 85, 0.08) 0%, rgba(168, 153, 104, 0.08) 100%);
-    padding: 3rem;
-    border-radius: 20px;
-    border-left: 4px solid var(--color-gold);
+    background: none;
+    padding: 3rem 0;
+    border-radius: 0;
+    border-top: 1px solid rgba(168, 153, 104, 0.25);
+    border-bottom: 1px solid rgba(168, 153, 104, 0.25);
     margin-top: var(--spacing-lg);
+    text-align: center;
 }
 
 .authority-banner h3 {
@@ -895,6 +899,8 @@ section {
         inset 0 3px 12px rgba(255, 255, 255, 0.08),
         inset 0 -6px 18px rgba(0, 0, 0, 0.45);
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    transform: translateZ(0);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 /* Glass highlight on top of bubble */
@@ -941,6 +947,70 @@ section {
     animation-delay: calc(var(--bi, 0) * -2.1s);
 }
 
+/* ── Modal bubble — appears at scene center on click ── */
+.bubble-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(5, 3, 4, 0.93);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1.5px solid rgba(168, 153, 104, 0.5);
+    box-shadow:
+        0 0 60px rgba(168, 153, 104, 0.18),
+        0 0 120px rgba(168, 153, 104, 0.06),
+        inset 0 0 40px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.bubble-modal.active {
+    pointer-events: auto;
+}
+
+.bubble-modal-inner {
+    text-align: center;
+    padding: 0 52px;
+}
+
+.bubble-modal-name {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 500;
+    color: var(--color-gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+
+.bubble-modal-rule {
+    width: 36px;
+    height: 1px;
+    background: rgba(168, 153, 104, 0.5);
+    margin: 0 auto 14px;
+}
+
+.bubble-modal-desc {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.8;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 /* Thematic symbol shown when product photo is absent */
 .bubble-symbol {
     position: absolute;
@@ -966,11 +1036,12 @@ section {
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
-    font-family: var(--font-body);
-    font-size: 0.78rem;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.4px;
-    color: rgba(13, 13, 11, 0.62);
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: rgba(13, 13, 11, 0.68);
     pointer-events: none;
 }
 
@@ -1095,18 +1166,22 @@ section {
 }
 
 .insight-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(168, 153, 104, 0.2);
-    border-radius: 20px;
-    padding: 3rem;
-    transition: all var(--transition-smooth);
+    background: none;
+    border: none;
+    border-top: 1px solid rgba(168, 153, 104, 0.2);
+    border-radius: 0;
+    padding: 4rem 0;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 3.5rem;
+    align-items: start;
+    transition: none;
 }
 
 .insight-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--color-gold);
-    transform: translateY(-5px);
+    background: none;
+    border-color: rgba(168, 153, 104, 0.4);
+    transform: none;
 }
 
 .insight-card h3 {
@@ -1170,24 +1245,29 @@ section {
 }
 
 .benefit-item {
-    background: var(--color-white);
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-    transition: all var(--transition-smooth);
-    border: 1px solid transparent;
+    background: none;
+    padding: 1.6rem 0;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.12);
+    text-align: left;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    transition: border-color var(--transition-smooth);
 }
 
 .benefit-item:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-gold);
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(168, 153, 104, 0.45);
 }
 
 .benefit-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    width: 2.5rem;
+    text-align: center;
 }
 
 .benefit-item h4 {
@@ -1212,17 +1292,18 @@ section {
 }
 
 .faq-item {
-    background: var(--color-white);
-    border: 1px solid rgba(139, 115, 85, 0.2);
-    border-radius: 15px;
-    margin-bottom: 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.15);
+    border-radius: 0;
+    margin-bottom: 0;
     overflow: hidden;
-    transition: all var(--transition-smooth);
+    transition: border-color var(--transition-smooth);
 }
 
 .faq-item:hover {
-    border-color: var(--color-gold);
-    box-shadow: var(--shadow-sm);
+    border-color: rgba(168, 153, 104, 0.45);
+    box-shadow: none;
 }
 
 .faq-question {
@@ -1285,10 +1366,10 @@ section {
 }
 
 .contact-form {
-    background: var(--color-white);
-    padding: 3rem;
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .form-group {
@@ -1306,20 +1387,21 @@ section {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem;
-    border: 2px solid rgba(139, 115, 85, 0.2);
-    border-radius: 10px;
+    padding: 0.8rem 0;
+    border: none;
+    border-bottom: 1.5px solid rgba(139, 115, 85, 0.3);
+    border-radius: 0;
     font-family: var(--font-body);
     font-size: 1rem;
-    transition: all var(--transition-smooth);
-    background: var(--color-white);
+    transition: border-color var(--transition-smooth);
+    background: transparent;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--color-gold);
-    box-shadow: 0 0 0 3px rgba(168, 153, 104, 0.1);
+    box-shadow: none;
 }
 
 .form-group textarea {

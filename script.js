@@ -637,11 +637,12 @@ gsap.to('.hero-background', {
         floatTweens.forEach(t => t.kill());
         floatTweens = [];
         bubbles.forEach((b, i) => {
-            const yR = 9 + (i % 3) * 5;
-            const dur = 2.4 + (i % 5) * 0.55;
+            const yR  = 5 + (i % 4) * 2.5;          // 5–12.5 px, subtle
+            const dur = 3.0 + (i % 7) * 0.45;        // 3.0–5.7 s, slow & varied
+            const xR  = 2 + (i % 4);                  // 2–5 px horizontal drift
             floatTweens.push(
-                gsap.to(b, { y: `+=${yR}`, duration: dur, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: (i * 0.38) % dur }),
-                gsap.to(b, { x: `+=${(i % 2 ? 1 : -1) * (4 + (i % 4) * 2)}`, duration: dur * 1.4, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: (i * 0.22) % (dur * 1.4) })
+                gsap.to(b, { y: `+=${yR}`, duration: dur, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: (i * 0.41) % dur }),
+                gsap.to(b, { x: `+=${(i % 2 ? 1 : -1) * xR}`, duration: dur * 1.7, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: (i * 0.19) % (dur * 1.7) })
             );
         });
     }
@@ -656,32 +657,49 @@ gsap.to('.hero-background', {
         );
     });
 
-    // 6. Click — show info panel
-    const panel = document.getElementById('veinInfo');
-    const panelName = panel?.querySelector('.vein-info-name');
-    const panelDesc = panel?.querySelector('.vein-info-desc');
+    // 6. Click — open modal bubble at scene center
+    const veinScene = document.querySelector('.vein-scene');
 
-    function showInfo(bubble) {
+    const modal = document.createElement('div');
+    modal.className = 'bubble-modal';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+        <div class="bubble-modal-inner">
+            <span class="bubble-modal-name"></span>
+            <div class="bubble-modal-rule"></div>
+            <p class="bubble-modal-desc"></p>
+        </div>`;
+    veinScene.appendChild(modal);
+    gsap.set(modal, { xPercent: -50, yPercent: -50, scale: 0, opacity: 0 });
+
+    let modalOpen = false;
+
+    function openModal(bubble) {
         const lang = typeof activeLang !== 'undefined' ? activeLang : 'es';
-        panelName.textContent = bubble.dataset[lang === 'es' ? 'nameEs' : 'nameEn'];
-        panelDesc.textContent = bubble.dataset[lang === 'es' ? 'descEs' : 'descEn'];
-        panel.classList.add('active');
-        panel.setAttribute('aria-hidden', 'false');
-        gsap.fromTo(panel,
-            { opacity: 0, y: 16, scale: 0.96 },
-            { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: 'back.out(1.4)' }
-        );
+        modal.querySelector('.bubble-modal-name').textContent = bubble.dataset[lang === 'es' ? 'nameEs' : 'nameEn'];
+        modal.querySelector('.bubble-modal-desc').textContent  = bubble.dataset[lang === 'es' ? 'descEs'  : 'descEn'];
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        modalOpen = true;
+        gsap.to(modal, { scale: 1, opacity: 1, duration: 0.45, ease: 'back.out(1.5)', overwrite: true });
     }
 
-    function hideInfo() {
-        gsap.to(panel, {
-            opacity: 0, y: 16, scale: 0.96, duration: 0.22, ease: 'power2.in',
-            onComplete: () => { panel.classList.remove('active'); panel.setAttribute('aria-hidden', 'true'); }
+    function closeModal() {
+        modalOpen = false;
+        modal.setAttribute('aria-hidden', 'true');
+        gsap.to(modal, {
+            scale: 0, opacity: 0, duration: 0.28, ease: 'back.in(1.2)', overwrite: true,
+            onComplete: () => modal.classList.remove('active')
         });
     }
 
-    bubbles.forEach(b => b.addEventListener('click', () => showInfo(b)));
-    document.getElementById('veinInfoClose')?.addEventListener('click', hideInfo);
+    modal.addEventListener('click', closeModal);
+
+    bubbles.forEach(b => {
+        b.addEventListener('click', () => {
+            modalOpen ? closeModal() : openModal(b);
+        });
+    });
 })();
 
 // ── Differentiator cards ──
