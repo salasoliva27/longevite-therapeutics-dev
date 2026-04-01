@@ -153,7 +153,7 @@ const PRODUCTS = [
 // Dynamic layout — works for any number of products
 // Arranges bubbles in a 2-row zigzag inside the vein scene
 function getBubbleLayout(total) {
-    const bs = total <= 4 ? 160 : total <= 7 ? 150 : total <= 10 ? 134 : total <= 14 ? 120 : 108;
+    const bs = total <= 4 ? 164 : total <= 7 ? 154 : total <= 10 ? 140 : total <= 14 ? 128 : 122;
     const positions = [];
     const topCount = Math.ceil(total / 2);
     const botCount = Math.floor(total / 2);
@@ -163,7 +163,7 @@ function getBubbleLayout(total) {
     for (let i = 0; i < total; i++) {
         if (i % 2 === 0) {
             const x = topCount > 1 ? 3 + ti * topStep : 44;
-            positions.push({ bx: `${x.toFixed(1)}%`, by: '13%', bs });
+            positions.push({ bx: `${x.toFixed(1)}%`, by: '8%', bs });
             ti++;
         } else {
             const x = botCount > 1 ? 8 + bi * botStep : 44;
