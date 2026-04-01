@@ -1,128 +1,197 @@
 // ============================================
 // PRODUCTS CONFIG
 // One entry per image file in images/products/
-// The filename (without extension) is the product name shown in the bubble.
-// Drop a photo in that folder and add an entry here — it appears automatically.
+// Drop a new photo in that folder, add an entry here — appears automatically.
 // ============================================
 const PRODUCTS = [
+    {
+        file: 'longevite.jpeg',
+        nameEs: 'Longevité',
+        nameEn: 'Longevité',
+        descEs: 'Nuestro protocolo insignia. Combinación avanzada de coenzimas, antioxidantes y nutrientes esenciales para regeneración celular profunda, optimización mitocondrial y longevidad sostenida.',
+        descEn: 'Our signature protocol. Advanced combination of coenzymes, antioxidants, and essential nutrients for deep cellular regeneration, mitochondrial optimization, and sustained longevity.',
+        color: '#1A3A4A'
+    },
     {
         file: 'Myers.jpg',
         nameEs: "Myers' Cocktail",
         nameEn: "Myers' Cocktail",
-        descEs: "Mezcla clásica de vitaminas y minerales esenciales que potencia la energía celular. Magnesio, calcio, complejo B y vitamina C en una sola infusión. Ideal para recuperación, vitalidad y soporte inmunológico.",
-        descEn: "Classic blend of essential vitamins and minerals that enhances cellular energy. Magnesium, calcium, B-complex, and vitamin C in a single infusion. Ideal for recovery, vitality, and immune support.",
-        color: '#8B7040',
-        size: 158
+        descEs: 'Mezcla clásica de magnesio, calcio, complejo B y vitamina C en infusión directa. Potencia la energía celular, refuerza el sistema inmune y combate la fatiga. El punto de partida ideal.',
+        descEn: 'Classic blend of magnesium, calcium, B-complex, and vitamin C in direct infusion. Boosts cellular energy, strengthens the immune system, and combats fatigue. The ideal starting point.',
+        color: '#8B7040'
     },
     {
-        file: 'NAD.jpg',
-        nameEs: "NAD+",
-        nameEn: "NAD+",
-        descEs: "Coenzima esencial para la reparación del ADN, la producción de energía celular y la función cognitiva. Los niveles de NAD+ disminuyen ~40% a los 50 años. La infusión IV restaura niveles juveniles y frena el envejecimiento celular.",
-        descEn: "Essential coenzyme for DNA repair, cellular energy production, and cognitive function. NAD+ levels decline ~40% by age 50. IV infusion restores youthful levels and slows cellular aging.",
-        color: '#5A3A8A',
-        size: 152
+        file: 'energy.jpeg',
+        nameEs: 'Energy',
+        nameEn: 'Energy',
+        descEs: 'Infusión diseñada para combatir el agotamiento físico y mental. Activa la producción de ATP, optimiza la función mitocondrial y restaura los niveles de energía desde adentro hacia afuera.',
+        descEn: 'Infusion designed to combat physical and mental exhaustion. Activates ATP production, optimizes mitochondrial function, and restores energy levels from the inside out.',
+        color: '#7A4A1A'
     },
     {
-        file: 'Glutathione.jpg',
-        nameEs: "Glutatión",
-        nameEn: "Glutathione",
-        descEs: "El antioxidante maestro del organismo. Neutraliza radicales libres, desintoxica el hígado, fortalece el sistema inmune y tiene efecto luminoso sobre la piel. Vía IV garantiza absorción total.",
-        descEn: "The body's master antioxidant. Neutralizes free radicals, detoxifies the liver, strengthens the immune system, and brightens the skin. IV delivery ensures complete absorption.",
-        color: '#3A7A5A',
-        size: 148
+        file: 'recharge.jpeg',
+        nameEs: 'Recharge',
+        nameEn: 'Recharge',
+        descEs: 'Recarga profunda tras esfuerzo físico intenso, viajes o períodos de alto estrés. Restaura electrolitos, hidratación celular y reservas de micronutrientes para recuperación rápida y efectiva.',
+        descEn: 'Deep recharge after intense physical effort, travel, or high-stress periods. Restores electrolytes, cellular hydration, and micronutrient reserves for fast and effective recovery.',
+        color: '#4A6A2A'
     },
     {
-        file: 'VitaminaC.jpg',
-        nameEs: "Vitamina C\nAlta Dosis",
-        nameEn: "High-Dose\nVitamin C",
-        descEs: "Dosis de 10–75 g directamente en el torrente sanguíneo. Potente antioxidante, estimula la síntesis de colágeno, refuerza la inmunidad y tiene efecto antiinflamatorio. Inaccesible por vía oral a estas concentraciones.",
-        descEn: "10–75 g doses delivered directly into the bloodstream. Powerful antioxidant, stimulates collagen synthesis, strengthens immunity, and has anti-inflammatory effects. Unachievable through oral supplementation at these concentrations.",
-        color: '#C85A20',
-        size: 150
+        file: 'immune.jpeg',
+        nameEs: 'Immune',
+        nameEn: 'Immune',
+        descEs: 'Refuerzo inmunológico de acción rápida. Vitamina C, zinc y selenio en dosis terapéuticas para activar las defensas naturales y reducir la duración e intensidad de infecciones.',
+        descEn: 'Fast-acting immune reinforcement. Vitamin C, zinc, and selenium at therapeutic doses to activate natural defenses and reduce the duration and intensity of infections.',
+        color: '#2A4A6A'
     },
     {
-        file: 'Ozone.jpg',
-        nameEs: "Terapia de\nOzono",
-        nameEn: "Ozone\nTherapy",
-        descEs: "Autohemoterapia mayor (MAH): sangre enriquecida con ozono medicinal y reinfundida. Modula el sistema inmune, reduce inflamación sistémica y mejora la oxigenación celular.",
-        descEn: "Major autohemotherapy (MAH): blood enriched with medical ozone and reinfused. Modulates the immune system, reduces systemic inflammation, and improves cellular oxygenation.",
-        color: '#2A6A9A',
-        size: 146
+        file: 'immune_plus.jpeg',
+        nameEs: 'Immune+',
+        nameEn: 'Immune+',
+        descEs: 'Versión reforzada del protocolo Immune. Incluye glutatión y cofactores adicionales para modulación inmunológica avanzada. Ideal en temporadas de alta exposición o estados de inmunodepresión.',
+        descEn: 'Enhanced version of the Immune protocol. Includes glutathione and additional cofactors for advanced immune modulation. Ideal during high-exposure seasons or immunocompromised states.',
+        color: '#1A3A5A'
     },
     {
-        file: 'Chelation.jpg',
-        nameEs: "Quelación",
-        nameEn: "Chelation",
-        descEs: "Protocolo EDTA/DMPS para eliminar metales pesados acumulados (plomo, mercurio, arsénico). Desintoxica el organismo, mejora la función cardiovascular y restaura el equilibrio mineral.",
-        descEn: "EDTA/DMPS protocol to eliminate accumulated heavy metals (lead, mercury, arsenic). Detoxifies the body, improves cardiovascular function, and restores mineral balance.",
-        color: '#7A5A3A',
-        size: 144
+        file: 'radiance.jpeg',
+        nameEs: 'Radiance',
+        nameEn: 'Radiance',
+        descEs: 'Terapia de luminosidad y salud cutánea. Glutatión, vitamina C y biotina en concentraciones que estimulan la síntesis de colágeno, unifican el tono de la piel y le devuelven brillo natural.',
+        descEn: 'Luminosity and skin health therapy. Glutathione, vitamin C, and biotin at concentrations that stimulate collagen synthesis, unify skin tone, and restore natural radiance.',
+        color: '#8A4A6A'
     },
     {
-        file: 'Phosphatidylcholine.jpg',
-        nameEs: "Fosfatidil-\ncolina",
-        nameEn: "Phosphatidyl-\ncholine",
-        descEs: "Componente esencial de las membranas celulares. Apoya la función cerebral, regenera el hígado, mejora la memoria y la concentración. Terapia de referencia en protocolos antiaging avanzados.",
-        descEn: "Essential component of cell membranes. Supports brain function, regenerates the liver, and improves memory and concentration. Reference therapy in advanced anti-aging protocols.",
-        color: '#5A7A3A',
-        size: 144
+        file: 're-glow.jpeg',
+        nameEs: 'Re-Glow',
+        nameEn: 'Re-Glow',
+        descEs: 'Rejuvenecimiento cutáneo profundo. Combinación de antioxidantes, ácido hialurónico IV y nutrientes regenerativos que revierten el daño oxidativo y restauran la firmeza y luminosidad de la piel.',
+        descEn: 'Deep skin rejuvenation. Combination of antioxidants, IV hyaluronic acid, and regenerative nutrients that reverse oxidative damage and restore skin firmness and luminosity.',
+        color: '#7A3A5A'
     },
     {
-        file: 'ImmuneBoost.jpg',
-        nameEs: "Impulso\nInmune",
-        nameEn: "Immune\nBoost",
-        descEs: "Combinación de alta dosis de vitamina C, zinc, selenio y glutatión. Activa y refuerza el sistema inmunológico de forma rápida. Ideal en temporadas de alta exposición o recuperación de enfermedades.",
-        descEn: "Combination of high-dose vitamin C, zinc, selenium, and glutathione. Rapidly activates and strengthens the immune system. Ideal during high-exposure seasons or disease recovery.",
-        color: '#9A3A5A',
-        size: 148
+        file: 'long-hair.jpeg',
+        nameEs: 'Long Hair',
+        nameEn: 'Long Hair',
+        descEs: 'Protocolo especializado para salud capilar desde adentro. Biotina, aminoácidos esenciales, zinc y silicio para fortalecer el folículo piloso, reducir la caída y estimular el crecimiento del cabello.',
+        descEn: 'Specialized protocol for hair health from within. Biotin, essential amino acids, zinc, and silica to strengthen hair follicles, reduce hair loss, and stimulate hair growth.',
+        color: '#6A5A2A'
     },
     {
-        file: 'Antiaging.jpg',
-        nameEs: "Protocolo\nAntiaging",
-        nameEn: "Anti-Aging\nProtocol",
-        descEs: "Protocolo de longevidad avanzado: NAD+, glutatión y fosfatidilcolina combinados. Regenera células, protege el ADN, optimiza la función mitocondrial y frena el envejecimiento a nivel molecular.",
-        descEn: "Advanced longevity protocol: NAD+, glutathione, and phosphatidylcholine combined. Regenerates cells, protects DNA, optimizes mitochondrial function, and slows aging at the molecular level.",
-        color: '#3A5A9A',
-        size: 152
+        file: 'after-party.jpeg',
+        nameEs: 'After Party',
+        nameEn: 'After Party',
+        descEs: 'Recuperación exprés tras una noche de celebración. Hidratación IV, vitaminas del complejo B, antiinflamatorios naturales y antioxidantes para eliminar la resaca y restaurar vitalidad en menos de una hora.',
+        descEn: 'Express recovery after a night of celebration. IV hydration, B-complex vitamins, natural anti-inflammatories, and antioxidants to eliminate hangovers and restore vitality in under an hour.',
+        color: '#5A2A6A'
+    },
+    {
+        file: 'migraine.jpeg',
+        nameEs: 'Migraine',
+        nameEn: 'Migraine',
+        descEs: 'Alivio rápido y efectivo de migraña. Magnesio IV, riboflavina y antiinflamatorios naturales que interrumpen el ciclo del dolor, reducen la intensidad del episodio y aceleran la recuperación.',
+        descEn: 'Fast and effective migraine relief. IV magnesium, riboflavin, and natural anti-inflammatories that interrupt the pain cycle, reduce episode intensity, and accelerate recovery.',
+        color: '#3A4A7A'
+    },
+    {
+        file: 'pain-relief.jpeg',
+        nameEs: 'Pain Relief',
+        nameEn: 'Pain Relief',
+        descEs: 'Manejo del dolor crónico y agudo sin fármacos convencionales. Combinación de antiinflamatorios naturales, magnesio y cofactores neuroprotectores para reducir la inflamación y el dolor de forma duradera.',
+        descEn: 'Chronic and acute pain management without conventional drugs. Combination of natural anti-inflammatories, magnesium, and neuroprotective cofactors to reduce inflammation and pain durably.',
+        color: '#6A3A3A'
+    },
+    {
+        file: 'iron.jpeg',
+        nameEs: 'Iron',
+        nameEn: 'Iron',
+        descEs: 'Reposición de hierro intravenosa para deficiencia con o sin anemia. Restaura los depósitos de ferritina, elimina la fatiga profunda y mejora el rendimiento cognitivo y físico de forma rápida.',
+        descEn: 'Intravenous iron replenishment for deficiency with or without anemia. Restores ferritin stores, eliminates deep fatigue, and rapidly improves cognitive and physical performance.',
+        color: '#4A3A2A'
+    },
+    {
+        file: 'purify.jpeg',
+        nameEs: 'Purify',
+        nameEn: 'Purify',
+        descEs: 'Purificación y limpieza profunda del organismo. Antioxidantes de amplio espectro, apoyo hepático y eliminación de toxinas acumuladas para restaurar el equilibrio interno y mejorar el bienestar general.',
+        descEn: 'Deep purification and cleansing of the body. Broad-spectrum antioxidants, liver support, and elimination of accumulated toxins to restore internal balance and improve overall well-being.',
+        color: '#2A5A4A'
+    },
+    {
+        file: 'g-detox.jpeg',
+        nameEs: 'G-Detox',
+        nameEn: 'G-Detox',
+        descEs: 'Desintoxicación potenciada con glutatión. Elimina toxinas liposolubles, metales pesados y subproductos del estrés oxidativo. Protege el hígado y restaura la capacidad antioxidante endógena.',
+        descEn: 'Glutathione-powered detoxification. Eliminates fat-soluble toxins, heavy metals, and oxidative stress byproducts. Protects the liver and restores endogenous antioxidant capacity.',
+        color: '#3A5A3A'
+    },
+    {
+        file: 'd-dtox.jpeg',
+        nameEs: 'D-Dtox',
+        nameEn: 'D-Dtox',
+        descEs: 'Desintoxicación reforzada con vitamina D3 en dosis terapéuticas. Regula la respuesta inmune, reduce la inflamación sistémica y apoya la salud ósea, hormonal y metabólica a nivel profundo.',
+        descEn: 'Detoxification reinforced with vitamin D3 at therapeutic doses. Regulates the immune response, reduces systemic inflammation, and supports bone, hormonal, and metabolic health at a deep level.',
+        color: '#7A6A1A'
+    },
+    {
+        file: 'detox-hepatico.jpeg',
+        nameEs: 'Detox\nHepático',
+        nameEn: 'Hepatic\nDetox',
+        descEs: 'Protocolo especializado de depuración hepática. Silimarina, glutatión, fosfolípidos y cofactores enzimáticos que regeneran el tejido del hígado, mejoran su función y optimizan la eliminación de toxinas.',
+        descEn: 'Specialized liver cleansing protocol. Silymarin, glutathione, phospholipids, and enzymatic cofactors that regenerate liver tissue, improve its function, and optimize toxin elimination.',
+        color: '#5A4A1A'
+    },
+    {
+        file: 'redox.jpeg',
+        nameEs: 'Redox',
+        nameEn: 'Redox',
+        descEs: 'Equilibrio redox celular avanzado. Restaura el balance entre oxidantes y antioxidantes a nivel mitocondrial, protege el ADN del daño oxidativo y optimiza la señalización celular para longevidad.',
+        descEn: 'Advanced cellular redox balance. Restores the balance between oxidants and antioxidants at the mitochondrial level, protects DNA from oxidative damage, and optimizes cellular signaling for longevity.',
+        color: '#2A2A5A'
     }
-    // To add a new product: drop the photo in images/products/ and add an entry above.
-    // Max 9 bubbles fit in the vein scene. Remove one entry if adding beyond 9.
 ];
 
-// Organic position presets for 1–9 bubbles inside the vein scene
-// Each sub-array has positions for that many bubbles
-const BUBBLE_POSITIONS = [
-    /* 1 */ [{bx:'44%', by:'28%', bs:170}],
-    /* 2 */ [{bx:'28%', by:'26%', bs:160}, {bx:'62%', by:'40%', bs:155}],
-    /* 3 */ [{bx:'12%', by:'22%', bs:158}, {bx:'46%', by:'46%', bs:150}, {bx:'74%', by:'18%', bs:156}],
-    /* 4 */ [{bx:'6%', by:'16%', bs:155}, {bx:'30%', by:'50%', bs:148}, {bx:'54%', by:'12%', bs:160}, {bx:'78%', by:'46%', bs:150}],
-    /* 5 */ [{bx:'4%', by:'16%', bs:155}, {bx:'20%', by:'50%', bs:148}, {bx:'36%', by:'12%', bs:162}, {bx:'56%', by:'48%', bs:144}, {bx:'76%', by:'14%', bs:156}],
-    /* 6 */ [{bx:'4%', by:'16%', bs:152}, {bx:'18%', by:'50%', bs:146}, {bx:'32%', by:'12%', bs:158}, {bx:'50%', by:'48%', bs:142}, {bx:'66%', by:'12%', bs:154}, {bx:'82%', by:'46%', bs:148}],
-    /* 7 */ [{bx:'2%', by:'16%', bs:150}, {bx:'16%', by:'50%', bs:144}, {bx:'29%', by:'12%', bs:156}, {bx:'43%', by:'48%', bs:140}, {bx:'57%', by:'12%', bs:156}, {bx:'70%', by:'46%', bs:144}, {bx:'84%', by:'14%', bs:150}],
-    /* 8 */ [{bx:'2%', by:'16%', bs:148}, {bx:'14%', by:'50%', bs:142}, {bx:'26%', by:'12%', bs:154}, {bx:'39%', by:'48%', bs:138}, {bx:'52%', by:'12%', bs:154}, {bx:'65%', by:'46%', bs:142}, {bx:'77%', by:'12%', bs:148}, {bx:'89%', by:'44%', bs:142}],
-    /* 9 */ [{bx:'2%', by:'16%', bs:146}, {bx:'13%', by:'50%', bs:140}, {bx:'24%', by:'12%', bs:152}, {bx:'36%', by:'48%', bs:136}, {bx:'48%', by:'12%', bs:152}, {bx:'59%', by:'48%', bs:140}, {bx:'70%', by:'12%', bs:146}, {bx:'81%', by:'46%', bs:140}, {bx:'90%', by:'22%', bs:146}]
-];
+// Dynamic layout — works for any number of products
+// Arranges bubbles in a 2-row zigzag inside the vein scene
+function getBubbleLayout(total) {
+    const bs = total <= 4 ? 160 : total <= 7 ? 150 : total <= 10 ? 134 : total <= 14 ? 120 : 108;
+    const positions = [];
+    const topCount = Math.ceil(total / 2);
+    const botCount = Math.floor(total / 2);
+    const topStep = topCount > 1 ? 86 / (topCount - 1) : 0;
+    const botStep = botCount > 1 ? 84 / (botCount - 1) : 0;
+    let ti = 0, bi = 0;
+    for (let i = 0; i < total; i++) {
+        if (i % 2 === 0) {
+            const x = topCount > 1 ? 3 + ti * topStep : 44;
+            positions.push({ bx: `${x.toFixed(1)}%`, by: '13%', bs });
+            ti++;
+        } else {
+            const x = botCount > 1 ? 8 + bi * botStep : 44;
+            positions.push({ bx: `${x.toFixed(1)}%`, by: '52%', bs });
+            bi++;
+        }
+    }
+    return positions;
+}
 
 function buildBubbles() {
     const container = document.querySelector('.vein-bubbles');
     if (!container || !PRODUCTS.length) return;
 
-    const n = Math.min(PRODUCTS.length, BUBBLE_POSITIONS.length);
-    const positions = BUBBLE_POSITIONS[n - 1];
+    const positions = getBubbleLayout(PRODUCTS.length);
 
     PRODUCTS.forEach((p, i) => {
-        const pos = positions[Math.min(i, positions.length - 1)];
+        const pos = positions[i];
         const el = document.createElement('div');
         el.className = 'therapy-bubble';
         el.dataset.nameEs = p.nameEs;
         el.dataset.nameEn = p.nameEn;
         el.dataset.descEs = p.descEs || '';
         el.dataset.descEn = p.descEn || '';
-        el.style.cssText = `--bx:${pos.bx};--by:${pos.by};--bs:${pos.bs}px;--bc:${p.color || '#8B7040'}`;
+        el.style.cssText = `--bx:${pos.bx};--by:${pos.by};--bs:${pos.bs}px;--bc:${p.color || '#8B7040'};--bi:${i}`;
         el.innerHTML = `
             <div class="bubble-shell">
-                <img src="images/products/${p.file}" alt="${p.nameEs}" class="bubble-img" onerror="this.style.display='none'">
+                <img src="images/products/${p.file}" alt="${p.nameEs}" class="bubble-img">
             </div>
             <span class="bubble-label lang-es">${p.nameEs}</span>
             <span class="bubble-label lang-en hidden">${p.nameEn}</span>`;
