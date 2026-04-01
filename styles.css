@@ -809,95 +809,249 @@ section {
     background: var(--color-white);
 }
 
-.therapies-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    margin-top: var(--spacing-lg);
+.vein-hint {
+    text-align: center;
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    margin-top: -2rem;
+    margin-bottom: 2rem;
 }
 
-.therapy-card {
-    background: var(--color-white);
-    border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: var(--shadow-md);
-    border: 1px solid rgba(139, 115, 85, 0.1);
-    transition: box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+/* ── Vein Scene ── */
+.vein-scene {
     position: relative;
+    width: 100%;
+    height: 560px;
     overflow: hidden;
-    transform-style: preserve-3d;
+    margin-top: var(--spacing-md);
+}
+
+.vein-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 70% at 50% 50%, #1c0408 0%, #0c0204 55%, #000000 100%);
+}
+
+.vein-walls-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.vein-wall {
+    fill: #000;
+}
+
+.vein-edge {
+    fill: none;
+    stroke: rgba(168, 153, 104, 0.18);
+    stroke-width: 2.5;
+}
+
+.vein-flow {
+    fill: none;
+    stroke: rgba(168, 153, 104, 0.04);
+    stroke-width: 1;
+    stroke-dasharray: 8 12;
+}
+
+/* Background cells */
+.vein-cells {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.vcell {
+    position: absolute;
+    left: var(--vx);
+    top: var(--vy);
+    width: var(--vs);
+    height: var(--vs);
+    border-radius: 50%;
+    background: rgba(168, 153, 104, 0.03);
+    border: 1px solid rgba(168, 153, 104, 0.07);
+}
+
+/* ── Bubbles ── */
+.vein-bubbles {
+    position: absolute;
+    inset: 0;
+}
+
+.therapy-bubble {
+    position: absolute;
+    left: var(--bx);
+    top: var(--by);
+    width: var(--bs);
+    height: var(--bs);
+    cursor: pointer;
+    opacity: 0;
     will-change: transform;
 }
 
-.therapy-card::before {
+.bubble-shell {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--bc);
+    border: 2px solid rgba(168, 153, 104, 0.35);
+    box-shadow:
+        0 0 28px rgba(168, 153, 104, 0.12),
+        inset 0 3px 12px rgba(255, 255, 255, 0.08),
+        inset 0 -6px 18px rgba(0, 0, 0, 0.45);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Glass highlight on top of bubble */
+.bubble-shell::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--gradient-gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.therapy-card:hover::before {
-    transform: scaleX(1);
-}
-
-.therapy-card:hover {
-    box-shadow: var(--shadow-xl);
-    border-color: rgba(139, 115, 85, 0.3);
-}
-
-.therapy-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, rgba(139, 115, 85, 0.1) 0%, rgba(168, 153, 104, 0.1) 100%);
+    top: 8%;
+    left: 18%;
+    width: 38%;
+    height: 30%;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.18) 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
 }
 
-.therapy-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-black);
-    margin-bottom: 1rem;
+/* Subtle inner shadow at bottom */
+.bubble-shell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(160deg, transparent 40%, rgba(0,0,0,0.35) 100%);
+    z-index: 2;
+    pointer-events: none;
 }
 
-.therapy-card p {
-    color: var(--color-text-light);
-    line-height: 1.8;
-    font-size: 1rem;
-}
-
-/* Therapy Images */
-.therapy-image-wrapper {
-    width: 100%;
-    max-width: 250px;
-    margin: 0 auto 1.5rem;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    transition: all var(--transition-smooth);
-}
-
-.therapy-image {
-    width: 100%;
-    height: auto;
-    display: block;
+.bubble-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-smooth);
+    border-radius: 50%;
+    z-index: 1;
 }
 
-.therapy-card:hover .therapy-image {
-    transform: scale(1.05);
+.bubble-label {
+    position: absolute;
+    bottom: -26px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    color: rgba(255, 255, 255, 0.65);
+    pointer-events: none;
+}
+
+/* Hover state */
+.therapy-bubble:hover .bubble-shell {
+    border-color: rgba(168, 153, 104, 0.85);
+    box-shadow:
+        0 0 45px rgba(168, 153, 104, 0.3),
+        0 0 90px rgba(168, 153, 104, 0.1),
+        inset 0 3px 12px rgba(255, 255, 255, 0.12),
+        inset 0 -6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.therapy-bubble:hover .bubble-label {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Info panel */
+.vein-info {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%) translateY(16px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 20;
+    width: min(520px, 88%);
+}
+
+.vein-info.active {
+    pointer-events: auto;
+}
+
+.vein-info-inner {
+    background: rgba(8, 2, 4, 0.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(168, 153, 104, 0.28);
+    border-radius: 16px;
+    padding: 1.4rem 2rem 1.4rem;
+    text-align: center;
+    box-shadow: 0 12px 50px rgba(0, 0, 0, 0.6);
+}
+
+.vein-info-close {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.9rem;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+.vein-info-close:hover { color: rgba(255,255,255,0.9); }
+
+.vein-info-name {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    margin-bottom: 0.6rem;
+}
+
+.vein-info-desc {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.92rem;
+    line-height: 1.75;
+}
+
+/* Mobile: switch to wrap grid */
+@media (max-width: 768px) {
+    .vein-scene {
+        height: auto;
+        min-height: 0;
+        padding: 1rem 1rem 3rem;
+        background: #0c0204;
+    }
+    .vein-bg, .vein-walls-svg, .vein-cells { display: none; }
+    .vein-bubbles {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem 1.5rem;
+        justify-content: center;
+        padding-top: 1rem;
+    }
+    .therapy-bubble {
+        position: relative;
+        left: auto; top: auto;
+        width: 110px; height: 110px;
+        opacity: 1;
+        transform: none !important;
+    }
+    .bubble-label { font-size: 0.72rem; }
+    .vein-info { bottom: 8px; }
 }
 
 /* ============================================

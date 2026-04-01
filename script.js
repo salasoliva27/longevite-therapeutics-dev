@@ -367,19 +367,96 @@ gsap.to('.hero-background', {
     }
 });
 
-// ── Therapy cards — fromTo with explicit opacity:1 end state ──
-gsap.utils.toArray('.therapy-card').forEach((card, index) => {
-    gsap.fromTo(card,
-        { opacity: 0, y: 40 },
-        {
-            opacity: 1, y: 0,
-            scrollTrigger: { trigger: card, start: 'top 82%', toggleActions: 'play none none none' },
-            duration: 0.8,
-            delay: (index % 3) * 0.1,
-            ease: 'power3.out'
+// ── Vein Scene ──
+(function () {
+    const bubbles = gsap.utils.toArray('.therapy-bubble');
+    if (!bubbles.length) return;
+
+    // 1. Set initial state (scale:0 handled by GSAP; opacity:0 is in CSS)
+    gsap.set(bubbles, { scale: 0 });
+
+    // 2. Background cell drift — continuous, independent of scroll
+    gsap.utils.toArray('.vcell').forEach((cell, i) => {
+        gsap.to(cell, {
+            x: `+=${20 + i * 8}`,
+            y: `+=${12 + i * 5}`,
+            duration: 4 + i * 1.1,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true
+        });
+    });
+
+    // 3. Bubble entrance on scroll
+    const entranceTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.vein-scene',
+            start: 'top 72%',
+            toggleActions: 'play none none reset',
+            onComplete: startFloat
         }
-    );
-});
+    });
+
+    bubbles.forEach((b, i) => {
+        entranceTl.fromTo(b,
+            { scale: 0, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.65, ease: 'back.out(1.8)' },
+            i * 0.09
+        );
+    });
+
+    // 4. Idle float — unique phase per bubble
+    let floatTweens = [];
+    function startFloat() {
+        floatTweens.forEach(t => t.kill());
+        floatTweens = [];
+        bubbles.forEach((b, i) => {
+            const yR = 9 + (i % 3) * 5;
+            const dur = 2.4 + (i % 5) * 0.55;
+            floatTweens.push(
+                gsap.to(b, { y: `+=${yR}`, duration: dur, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: (i * 0.38) % dur }),
+                gsap.to(b, { x: `+=${(i % 2 ? 1 : -1) * (4 + (i % 4) * 2)}`, duration: dur * 1.4, ease: 'sine.inOut', repeat: -1, yoyo: true, delay: (i * 0.22) % (dur * 1.4) })
+            );
+        });
+    }
+
+    // 5. Hover — scale shell
+    bubbles.forEach(b => {
+        b.addEventListener('mouseenter', () =>
+            gsap.to(b, { scale: 1.1, duration: 0.28, ease: 'power2.out', overwrite: 'auto' })
+        );
+        b.addEventListener('mouseleave', () =>
+            gsap.to(b, { scale: 1, duration: 0.45, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' })
+        );
+    });
+
+    // 6. Click — show info panel
+    const panel = document.getElementById('veinInfo');
+    const panelName = panel?.querySelector('.vein-info-name');
+    const panelDesc = panel?.querySelector('.vein-info-desc');
+
+    function showInfo(bubble) {
+        const lang = typeof activeLang !== 'undefined' ? activeLang : 'es';
+        panelName.textContent = bubble.dataset[lang === 'es' ? 'nameEs' : 'nameEn'];
+        panelDesc.textContent = bubble.dataset[lang === 'es' ? 'descEs' : 'descEn'];
+        panel.classList.add('active');
+        panel.setAttribute('aria-hidden', 'false');
+        gsap.fromTo(panel,
+            { opacity: 0, y: 16, scale: 0.96 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: 'back.out(1.4)' }
+        );
+    }
+
+    function hideInfo() {
+        gsap.to(panel, {
+            opacity: 0, y: 16, scale: 0.96, duration: 0.22, ease: 'power2.in',
+            onComplete: () => { panel.classList.remove('active'); panel.setAttribute('aria-hidden', 'true'); }
+        });
+    }
+
+    bubbles.forEach(b => b.addEventListener('click', () => showInfo(b)));
+    document.getElementById('veinInfoClose')?.addEventListener('click', hideInfo);
+})();
 
 // ── Differentiator cards ──
 gsap.utils.toArray('.differentiator-card').forEach((card, index) => {
