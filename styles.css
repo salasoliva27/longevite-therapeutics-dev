@@ -822,7 +822,7 @@ section {
 .vein-scene {
     position: relative;
     width: 100%;
-    height: 680px;
+    height: 960px;
     overflow: hidden;
     margin-top: var(--spacing-md);
 }
@@ -858,23 +858,12 @@ section {
     stroke-dasharray: 8 12;
 }
 
-/* Background cells */
-.vein-cells {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-}
+/* Background cells — hidden */
+.vein-cells { display: none; }
+.vcell { display: none; }
 
-.vcell {
-    position: absolute;
-    left: var(--vx);
-    top: var(--vy);
-    width: var(--vs);
-    height: var(--vs);
-    border-radius: 50%;
-    background: rgba(168, 153, 104, 0.03);
-    border: 1px solid rgba(168, 153, 104, 0.07);
-}
+/* Hide SVG blood cell ellipses */
+.vein-walls-svg > g { display: none; }
 
 /* ── Bubbles ── */
 .vein-bubbles {
@@ -973,7 +962,7 @@ section {
 
 .bubble-label {
     position: absolute;
-    bottom: -26px;
+    bottom: -28px;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
@@ -981,7 +970,7 @@ section {
     font-size: 0.78rem;
     font-weight: 500;
     letter-spacing: 0.4px;
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(13, 13, 11, 0.62);
     pointer-events: none;
 }
 
@@ -996,7 +985,7 @@ section {
 }
 
 .therapy-bubble:hover .bubble-label {
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(13, 13, 11, 0.9);
 }
 
 /* Info panel */

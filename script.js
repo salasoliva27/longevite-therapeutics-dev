@@ -150,25 +150,44 @@ const PRODUCTS = [
     }
 ];
 
-// Dynamic layout — works for any number of products
-// Arranges bubbles in a 2-row zigzag inside the vein scene
-function getBubbleLayout(total) {
-    const bs = total <= 4 ? 164 : total <= 7 ? 154 : total <= 10 ? 140 : total <= 14 ? 128 : 122;
+// Grid layout with per-cell jitter — evenly spaced but visually random
+// Each product gets its own grid cell; position is randomised within that cell
+function getBubbleLayout(total, containerW, containerH) {
+    const bs = 170;
+    const cols = 6;
+    const rows = Math.ceil(total / cols);
+    const cellW = containerW / cols;
+    const cellH = containerH / rows;
+
+    // Deterministic PRNG so layout is stable across reloads
+    let seed = 7919;
+    function rand() {
+        seed = (seed * 1664525 + 1013904223) >>> 0;
+        return seed / 4294967296;
+    }
+    function jitter(range) { return (rand() - 0.5) * 2 * range; }
+
     const positions = [];
-    const topCount = Math.ceil(total / 2);
-    const botCount = Math.floor(total / 2);
-    const topStep = topCount > 1 ? 86 / (topCount - 1) : 0;
-    const botStep = botCount > 1 ? 84 / (botCount - 1) : 0;
-    let ti = 0, bi = 0;
-    for (let i = 0; i < total; i++) {
-        if (i % 2 === 0) {
-            const x = topCount > 1 ? 3 + ti * topStep : 44;
-            positions.push({ bx: `${x.toFixed(1)}%`, by: '8%', bs });
-            ti++;
-        } else {
-            const x = botCount > 1 ? 8 + bi * botStep : 44;
-            positions.push({ bx: `${x.toFixed(1)}%`, by: '52%', bs });
-            bi++;
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            if (positions.length >= total) break;
+            // Cell centre
+            const cx = (c + 0.5) * cellW;
+            const cy = (r + 0.5) * cellH;
+            // Max jitter: 28% of cell dimension, but never let bubble leave its cell
+            const maxJX = Math.max(0, (cellW - bs) * 0.5) * 0.7;
+            const maxJY = Math.max(0, (cellH - bs) * 0.5) * 0.7;
+            // Top-left pixel position
+            let bxPx = cx + jitter(maxJX) - bs / 2;
+            let byPx = cy + jitter(maxJY) - bs / 2;
+            // Clamp: extra 36px clearance at bottom for label + float animation
+            bxPx = Math.max(4, Math.min(containerW - bs - 4, bxPx));
+            byPx = Math.max(4, Math.min(containerH - bs - 36, byPx));
+            positions.push({
+                bx: `${(bxPx / containerW * 100).toFixed(2)}%`,
+                by: `${(byPx / containerH * 100).toFixed(2)}%`,
+                bs
+            });
         }
     }
     return positions;
@@ -176,9 +195,12 @@ function getBubbleLayout(total) {
 
 function buildBubbles() {
     const container = document.querySelector('.vein-bubbles');
-    if (!container || !PRODUCTS.length) return;
+    const scene    = document.querySelector('.vein-scene');
+    if (!container || !scene || !PRODUCTS.length) return;
 
-    const positions = getBubbleLayout(PRODUCTS.length);
+    const W = scene.offsetWidth  || 1280;
+    const H = scene.offsetHeight || 960;
+    const positions = getBubbleLayout(PRODUCTS.length, W, H);
 
     PRODUCTS.forEach((p, i) => {
         const pos = positions[i];
