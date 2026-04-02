@@ -370,16 +370,62 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// CONDITIONS ACCORDION
+// CONDITIONS PILL — single-select with shared detail panel
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    const panel     = document.getElementById('condition-detail-panel');
+    const imgEl     = document.getElementById('condition-detail-img');
+    const numEl     = document.getElementById('condition-detail-num');
+    const titleEl   = document.getElementById('condition-detail-title');
+    const textEl    = document.getElementById('condition-detail-text');
+
+    function isSpanish() {
+        return document.documentElement.lang === 'es' ||
+               !document.querySelector('.lang-es')?.classList.contains('hidden');
+    }
+
     document.querySelectorAll('.condition-item').forEach(item => {
-        const header = item.querySelector('.condition-header');
-        if (header) {
-            header.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        }
+        item.addEventListener('click', () => {
+            const wasActive = item.classList.contains('active');
+
+            // Deactivate all pills
+            document.querySelectorAll('.condition-item').forEach(i => i.classList.remove('active'));
+
+            if (wasActive) {
+                // Second click on same pill — close panel
+                panel.classList.remove('open');
+                return;
+            }
+
+            item.classList.add('active');
+
+            // Pull data from the pill
+            const num   = item.querySelector('.condition-num')?.textContent.trim() || '';
+            const nameEs = item.querySelector('.condition-name .lang-es')?.textContent.trim() || '';
+            const nameEn = item.querySelector('.condition-name .lang-en')?.textContent.trim() || '';
+            const descEs = item.querySelector('.condition-description .lang-es')?.textContent.trim() || '';
+            const descEn = item.querySelector('.condition-description .lang-en')?.textContent.trim() || '';
+            const img    = item.dataset.img || '';
+
+            const lang = isSpanish();
+            numEl.textContent   = num;
+            titleEl.textContent = lang ? nameEs : nameEn;
+            textEl.textContent  = lang ? descEs : descEn;
+
+            if (img) {
+                imgEl.src = img;
+                imgEl.alt = lang ? nameEs : nameEn;
+                imgEl.style.display = 'block';
+                panel.querySelector('.condition-detail-img-wrap').style.display = 'block';
+            } else {
+                panel.querySelector('.condition-detail-img-wrap').style.display = 'none';
+            }
+
+            panel.classList.add('open');
+
+            // Scroll panel into view smoothly
+            setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+        });
     });
 });
 
