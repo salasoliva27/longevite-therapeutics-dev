@@ -663,7 +663,7 @@ section {
 
 .section-image {
     width: 100%;
-    height: 130%;
+    height: 150%;
     display: block;
     object-fit: cover;
     object-position: center;
@@ -831,42 +831,47 @@ section {
     margin-top: var(--spacing-md);
 }
 
+/* Wall surface — dark stone panel */
 .vein-bg {
     position: absolute;
     inset: 0;
-    background: var(--color-white);
+    background:
+        /* subtle noise via repeating radial */
+        radial-gradient(ellipse at 20% 40%, rgba(168,153,104,0.04) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 60%, rgba(168,153,104,0.03) 0%, transparent 55%),
+        linear-gradient(160deg, #1a1714 0%, #141210 40%, #1c1916 70%, #161310 100%);
 }
 
-.vein-walls-svg {
+/* Faint horizontal mortar lines to sell the "stone wall" */
+.vein-bg::before {
+    content: '';
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 119px,
+            rgba(0,0,0,0.18) 120px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 239px,
+            rgba(0,0,0,0.1) 240px
+        );
     pointer-events: none;
 }
 
-.vein-wall {
-    fill: var(--color-white);
-}
-
-.vein-edge {
-    fill: none;
-    stroke: rgba(168, 153, 104, 0.18);
-    stroke-width: 2.5;
-}
-
-.vein-flow {
-    fill: none;
-    stroke: rgba(168, 153, 104, 0.04);
-    stroke-width: 1;
-    stroke-dasharray: 8 12;
-}
+/* Hide the organic vein SVG — not needed for wall aesthetic */
+.vein-walls-svg { display: none; }
+.vein-wall { fill: transparent; }
+.vein-edge { stroke: none; }
+.vein-flow { stroke: none; }
 
 /* Background cells — hidden */
 .vein-cells { display: none; }
 .vcell { display: none; }
-
-/* Hide SVG blood cell ellipses */
 .vein-walls-svg > g { display: none; }
 
 /* ── Bubbles ── */
@@ -884,6 +889,28 @@ section {
     cursor: pointer;
     opacity: 0;
     will-change: transform;
+}
+
+/* Recessed hole in the wall — the ring around the bubble */
+.therapy-bubble::before {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    background: #0e0c0a;
+    box-shadow:
+        /* outer wall edge — light catches top-left */
+        inset 0 4px 0 0 rgba(255,255,255,0.06),
+        inset 4px 0 0 0 rgba(255,255,255,0.03),
+        /* deep cavity shadow — bottom-right is dark */
+        inset 0 -6px 18px rgba(0,0,0,0.85),
+        inset -6px 0 14px rgba(0,0,0,0.6),
+        inset 6px 6px 20px rgba(0,0,0,0.7),
+        /* outer drop — hole punched into wall casts shadow outward */
+        0 8px 24px rgba(0,0,0,0.6),
+        0 2px 6px rgba(0,0,0,0.8);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .bubble-shell {

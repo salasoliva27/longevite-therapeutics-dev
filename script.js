@@ -13,7 +13,7 @@ const PRODUCTS = [
         color: '#1A3A4A'
     },
     {
-        file: 'Myers.jpg',
+        file: 'waiting_chairs.jpg',
         nameEs: "Myers' Cocktail",
         nameEn: "Myers' Cocktail",
         descEs: 'Mezcla clásica de magnesio, calcio, complejo B y vitamina C en infusión directa. Potencia la energía celular, refuerza el sistema inmune y combate la fatiga. El punto de partida ideal.',
@@ -841,9 +841,9 @@ document.querySelectorAll('.section-image-container').forEach((container) => {
     // Parallax on the image inside (scrub = tied to scroll progress)
     if (image) {
         gsap.fromTo(image,
-            { yPercent: -8 },
+            { yPercent: -25 },
             {
-                yPercent: 8,
+                yPercent: -5,
                 ease: 'none',
                 scrollTrigger: {
                     trigger: container,
