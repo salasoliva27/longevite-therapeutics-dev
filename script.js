@@ -13,7 +13,7 @@ const PRODUCTS = [
         color: '#1A3A4A'
     },
     {
-        file: 'waiting_chairs.jpg',
+        file: 'Myers.jpg',
         nameEs: "Myers' Cocktail",
         nameEn: "Myers' Cocktail",
         descEs: 'Mezcla clásica de magnesio, calcio, complejo B y vitamina C en infusión directa. Potencia la energía celular, refuerza el sistema inmune y combate la fatiga. El punto de partida ideal.',
@@ -150,79 +150,32 @@ const PRODUCTS = [
     }
 ];
 
-// Grid layout with per-cell jitter — evenly spaced but visually random
-// Each product gets its own grid cell; position is randomised within that cell
-function getBubbleLayout(total, containerW, containerH) {
-    const bs = 170;
-    const cols = 6;
-    const rows = Math.ceil(total / cols);
-    const cellW = containerW / cols;
-    const cellH = containerH / rows;
+function buildShelf() {
+    const container = document.querySelector('.therapy-shelf');
+    if (!container || !PRODUCTS.length) return;
 
-    // Deterministic PRNG so layout is stable across reloads
-    let seed = 7919;
-    function rand() {
-        seed = (seed * 1664525 + 1013904223) >>> 0;
-        return seed / 4294967296;
-    }
-    function jitter(range) { return (rand() - 0.5) * 2 * range; }
-
-    const positions = [];
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-            if (positions.length >= total) break;
-            // Cell centre
-            const cx = (c + 0.5) * cellW;
-            const cy = (r + 0.5) * cellH;
-            // Max jitter: 28% of cell dimension, but never let bubble leave its cell
-            const maxJX = Math.max(0, (cellW - bs) * 0.5) * 0.7;
-            const maxJY = Math.max(0, (cellH - bs) * 0.5) * 0.7;
-            // Top-left pixel position
-            let bxPx = cx + jitter(maxJX) - bs / 2;
-            let byPx = cy + jitter(maxJY) - bs / 2;
-            // Clamp: extra 36px clearance at bottom for label + float animation
-            bxPx = Math.max(4, Math.min(containerW - bs - 4, bxPx));
-            byPx = Math.max(4, Math.min(containerH - bs - 36, byPx));
-            positions.push({
-                bx: `${(bxPx / containerW * 100).toFixed(2)}%`,
-                by: `${(byPx / containerH * 100).toFixed(2)}%`,
-                bs
-            });
-        }
-    }
-    return positions;
-}
-
-function buildBubbles() {
-    const container = document.querySelector('.vein-bubbles');
-    const scene    = document.querySelector('.vein-scene');
-    if (!container || !scene || !PRODUCTS.length) return;
-
-    const W = scene.offsetWidth  || 1280;
-    const H = scene.offsetHeight || 960;
-    const positions = getBubbleLayout(PRODUCTS.length, W, H);
-
-    PRODUCTS.forEach((p, i) => {
-        const pos = positions[i];
-        const el = document.createElement('div');
-        el.className = 'therapy-bubble';
-        el.dataset.nameEs = p.nameEs;
-        el.dataset.nameEn = p.nameEn;
-        el.dataset.descEs = p.descEs || '';
-        el.dataset.descEn = p.descEn || '';
-        el.style.cssText = `--bx:${pos.bx};--by:${pos.by};--bs:${pos.bs}px;--bc:${p.color || '#8B7040'};--bi:${i}`;
-        el.innerHTML = `
-            <div class="bubble-shell">
-                <img src="images/products/${p.file}" alt="${p.nameEs}" class="bubble-img">
+    PRODUCTS.forEach((p) => {
+        const box = document.createElement('div');
+        box.className = 'therapy-box';
+        const nameEs = p.nameEs.replace('\n', '<br>');
+        const nameEn = p.nameEn.replace('\n', '<br>');
+        box.innerHTML = `
+            <div class="box-frame">
+                <img src="images/products/${p.file}" alt="${p.nameEs}" class="box-img" loading="lazy">
+                <div class="box-overlay">
+                    <p class="box-desc lang-es">${p.descEs}</p>
+                    <p class="box-desc lang-en hidden">${p.descEn}</p>
+                </div>
             </div>
-            <span class="bubble-label lang-es">${p.nameEs}</span>
-            <span class="bubble-label lang-en hidden">${p.nameEn}</span>`;
-        container.appendChild(el);
+            <div class="box-label">
+                <span class="lang-es">${nameEs}</span>
+                <span class="lang-en hidden">${nameEn}</span>
+            </div>`;
+        container.appendChild(box);
     });
 }
 
-// Build bubbles immediately (script runs after DOM is parsed)
-buildBubbles();
+buildShelf();
 
 // ============================================
 // LANGUAGE TOGGLE

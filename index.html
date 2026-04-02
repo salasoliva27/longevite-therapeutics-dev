@@ -449,93 +449,10 @@
                 <span class="lang-es">Conoce Nuestras Terapias Intravenosas</span>
                 <span class="lang-en hidden">Explore Our Intravenous Therapies</span>
             </h2>
-            <p class="vein-hint fade-in">
-                <span class="lang-es">Haz clic en cada burbuja para conocer más</span>
-                <span class="lang-en hidden">Click each bubble to learn more</span>
-            </p>
-        </div>
-
-        <!-- Vein Scene -->
-        <div class="vein-scene">
-
-            <!-- Background -->
-            <div class="vein-bg"></div>
-
-            <!-- Organic vein walls -->
-            <svg class="vein-walls-svg" viewBox="0 0 1280 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <filter id="vein-blur">
-                        <feGaussianBlur stdDeviation="3"/>
-                    </filter>
-                    <!-- Blood flow motion paths (referenced by animateMotion, not rendered) -->
-                    <path id="bp1" d="M-60,278 C200,270 440,288 640,275 C840,262 1060,280 1380,268"/>
-                    <path id="bp2" d="M-60,242 C200,234 440,252 640,239 C840,226 1060,244 1380,232"/>
-                    <path id="bp3" d="M-60,314 C200,306 440,324 640,311 C840,298 1060,316 1380,304"/>
-                    <path id="bp4" d="M-60,208 C200,200 440,218 640,205 C840,192 1060,210 1380,198"/>
-                    <path id="bp5" d="M-60,348 C200,340 440,358 640,345 C840,332 1060,350 1380,338"/>
-                </defs>
-                <!-- Top wall -->
-                <path class="vein-wall" d="M-100,0 C150,55 360,-15 580,48 C800,110 1020,10 1200,60 C1260,78 1300,40 1400,65 L1400,-5 L-100,-5 Z"/>
-                <!-- Bottom wall -->
-                <path class="vein-wall" d="M-100,560 C150,498 360,558 580,505 C800,452 1020,545 1200,492 C1260,475 1300,510 1400,485 L1400,570 L-100,570 Z"/>
-                <!-- Inner glow lines -->
-                <path class="vein-edge" d="M-100,62 C150,78 360,18 580,68 C800,118 1020,28 1200,78 C1260,93 1300,58 1400,80" filter="url(#vein-blur)"/>
-                <path class="vein-edge" d="M-100,498 C150,480 360,538 580,495 C800,452 1020,528 1200,480 C1260,462 1300,495 1400,472" filter="url(#vein-blur)"/>
-                <!-- Central flow line (subtle) -->
-                <path class="vein-flow" d="M-100,280 C200,272 440,290 640,278 C840,266 1060,286 1280,275"/>
-
-                <!-- Flowing blood cells -->
-                <g style="pointer-events:none">
-                    <!-- bp1 — center ~y278 -->
-                    <ellipse rx="6" ry="4" fill="#C84060" fill-opacity="0.50"><animateMotion dur="5.2s" repeatCount="indefinite" begin="0s"><mpath href="#bp1"/></animateMotion></ellipse>
-                    <ellipse rx="4" ry="3" fill="#B03050" fill-opacity="0.42"><animateMotion dur="4.1s" repeatCount="indefinite" begin="2.1s"><mpath href="#bp1"/></animateMotion></ellipse>
-                    <ellipse rx="5" ry="3" fill="#D04870" fill-opacity="0.38"><animateMotion dur="6.5s" repeatCount="indefinite" begin="4.3s"><mpath href="#bp1"/></animateMotion></ellipse>
-                    <ellipse rx="3" ry="2" fill="#B83060" fill-opacity="0.55"><animateMotion dur="3.8s" repeatCount="indefinite" begin="1.2s"><mpath href="#bp1"/></animateMotion></ellipse>
-                    <ellipse rx="6" ry="4" fill="#C04060" fill-opacity="0.30"><animateMotion dur="7.2s" repeatCount="indefinite" begin="5.8s"><mpath href="#bp1"/></animateMotion></ellipse>
-                    <!-- bp2 — upper-center ~y242 -->
-                    <ellipse rx="5" ry="3" fill="#B83060" fill-opacity="0.45"><animateMotion dur="4.8s" repeatCount="indefinite" begin="0.7s"><mpath href="#bp2"/></animateMotion></ellipse>
-                    <ellipse rx="4" ry="2" fill="#C84060" fill-opacity="0.38"><animateMotion dur="5.5s" repeatCount="indefinite" begin="3.2s"><mpath href="#bp2"/></animateMotion></ellipse>
-                    <ellipse rx="6" ry="4" fill="#A02848" fill-opacity="0.50"><animateMotion dur="4.2s" repeatCount="indefinite" begin="1.9s"><mpath href="#bp2"/></animateMotion></ellipse>
-                    <ellipse rx="3" ry="2" fill="#C84060" fill-opacity="0.32"><animateMotion dur="6.8s" repeatCount="indefinite" begin="6.1s"><mpath href="#bp2"/></animateMotion></ellipse>
-                    <ellipse rx="5" ry="3" fill="#B03050" fill-opacity="0.42"><animateMotion dur="3.5s" repeatCount="indefinite" begin="2.8s"><mpath href="#bp2"/></animateMotion></ellipse>
-                    <!-- bp3 — lower-center ~y314 -->
-                    <ellipse rx="5" ry="4" fill="#C84060" fill-opacity="0.48"><animateMotion dur="5.0s" repeatCount="indefinite" begin="0.4s"><mpath href="#bp3"/></animateMotion></ellipse>
-                    <ellipse rx="4" ry="3" fill="#B83060" fill-opacity="0.35"><animateMotion dur="4.6s" repeatCount="indefinite" begin="3.7s"><mpath href="#bp3"/></animateMotion></ellipse>
-                    <ellipse rx="6" ry="3" fill="#D04870" fill-opacity="0.40"><animateMotion dur="6.2s" repeatCount="indefinite" begin="1.5s"><mpath href="#bp3"/></animateMotion></ellipse>
-                    <ellipse rx="3" ry="2" fill="#A02848" fill-opacity="0.55"><animateMotion dur="3.9s" repeatCount="indefinite" begin="5.0s"><mpath href="#bp3"/></animateMotion></ellipse>
-                    <ellipse rx="5" ry="4" fill="#C04060" fill-opacity="0.30"><animateMotion dur="7.5s" repeatCount="indefinite" begin="2.4s"><mpath href="#bp3"/></animateMotion></ellipse>
-                    <!-- bp4 — upper band ~y208 -->
-                    <ellipse rx="4" ry="3" fill="#C84060" fill-opacity="0.35"><animateMotion dur="5.8s" repeatCount="indefinite" begin="1.1s"><mpath href="#bp4"/></animateMotion></ellipse>
-                    <ellipse rx="5" ry="3" fill="#B03050" fill-opacity="0.28"><animateMotion dur="4.4s" repeatCount="indefinite" begin="4.8s"><mpath href="#bp4"/></animateMotion></ellipse>
-                    <ellipse rx="3" ry="2" fill="#C84060" fill-opacity="0.40"><animateMotion dur="6.0s" repeatCount="indefinite" begin="0.8s"><mpath href="#bp4"/></animateMotion></ellipse>
-                    <ellipse rx="4" ry="2" fill="#B83060" fill-opacity="0.32"><animateMotion dur="3.6s" repeatCount="indefinite" begin="3.3s"><mpath href="#bp4"/></animateMotion></ellipse>
-                    <ellipse rx="5" ry="3" fill="#A02848" fill-opacity="0.28"><animateMotion dur="7.8s" repeatCount="indefinite" begin="6.5s"><mpath href="#bp4"/></animateMotion></ellipse>
-                    <!-- bp5 — lower band ~y348 -->
-                    <ellipse rx="4" ry="3" fill="#C84060" fill-opacity="0.38"><animateMotion dur="5.4s" repeatCount="indefinite" begin="0.9s"><mpath href="#bp5"/></animateMotion></ellipse>
-                    <ellipse rx="5" ry="4" fill="#B83060" fill-opacity="0.30"><animateMotion dur="4.7s" repeatCount="indefinite" begin="4.1s"><mpath href="#bp5"/></animateMotion></ellipse>
-                    <ellipse rx="3" ry="2" fill="#D04870" fill-opacity="0.45"><animateMotion dur="6.3s" repeatCount="indefinite" begin="2.2s"><mpath href="#bp5"/></animateMotion></ellipse>
-                    <ellipse rx="6" ry="3" fill="#A02848" fill-opacity="0.35"><animateMotion dur="3.7s" repeatCount="indefinite" begin="5.6s"><mpath href="#bp5"/></animateMotion></ellipse>
-                    <ellipse rx="4" ry="3" fill="#C04060" fill-opacity="0.28"><animateMotion dur="8.0s" repeatCount="indefinite" begin="1.6s"><mpath href="#bp5"/></animateMotion></ellipse>
-                </g>
-            </svg>
-
-            <!-- Floating background cells (blood cells) -->
-            <div class="vein-cells">
-                <div class="vcell" style="--vx:8%;--vy:38%;--vs:72px"></div>
-                <div class="vcell" style="--vx:22%;--vy:62%;--vs:48px"></div>
-                <div class="vcell" style="--vx:37%;--vy:28%;--vs:60px"></div>
-                <div class="vcell" style="--vx:53%;--vy:65%;--vs:55px"></div>
-                <div class="vcell" style="--vx:68%;--vy:32%;--vs:66px"></div>
-                <div class="vcell" style="--vx:80%;--vy:58%;--vs:44px"></div>
-                <div class="vcell" style="--vx:92%;--vy:42%;--vs:58px"></div>
-                <div class="vcell" style="--vx:14%;--vy:22%;--vs:40px"></div>
             </div>
 
-            <!-- Therapy Bubbles — built dynamically from PRODUCTS config in script.js -->
-            <div class="vein-bubbles"></div><!-- /vein-bubbles -->
-
-
-        </div><!-- /vein-scene -->
+        <!-- Therapy Shelf — built dynamically from PRODUCTS config in script.js -->
+        <div class="therapy-shelf fade-in"></div>
     </section>
 
     <!-- Scientific Insights Section -->
@@ -961,6 +878,6 @@
         }
       }
     </script>
-    <script src="widget.js" type="module"></script>
+    <script src="widget.js"></script>
 </body>
 </html>

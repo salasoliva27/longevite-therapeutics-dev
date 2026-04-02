@@ -810,7 +810,11 @@ section {
    THERAPIES SECTION
 ============================================ */
 #therapies {
-    background: var(--color-white);
+    background: #0e0c09;
+}
+
+#therapies .section-title {
+    color: var(--color-cream);
 }
 
 .vein-hint {
@@ -1167,6 +1171,136 @@ section {
     }
     .bubble-label { font-size: 0.72rem; }
     .vein-info { bottom: 8px; }
+}
+
+/* ── Therapy Shelf ─────────────────────────── */
+.therapy-shelf {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    background:
+        linear-gradient(180deg, #0e0c09 0%, #14110d 30%, #14110d 70%, #0e0c09 100%);
+    padding: 48px 0 64px;
+    position: relative;
+}
+
+/* Horizontal shelf lines between every row of 6 */
+.therapy-shelf::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: calc(48px + (100% - 112px) / 3);
+    height: 6px;
+    background: linear-gradient(180deg, #2a1f12 0%, #1a1208 50%, #0e0c09 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    pointer-events: none;
+}
+
+.therapy-box {
+    cursor: pointer;
+    transition: transform 0.3s ease, z-index 0s;
+    position: relative;
+    z-index: 1;
+}
+
+.therapy-box:hover {
+    transform: translateY(-6px);
+    z-index: 3;
+}
+
+.box-frame {
+    aspect-ratio: 3 / 4;
+    position: relative;
+    overflow: hidden;
+    background: #1a1410;
+    border-top: 1.5px solid rgba(168, 153, 104, 0.22);
+    border-left: 1.5px solid rgba(168, 153, 104, 0.18);
+    border-right: 1.5px solid rgba(168, 153, 104, 0.12);
+    box-shadow:
+        inset 0 0 0 1px rgba(168, 153, 104, 0.06),
+        4px 0 0 rgba(0,0,0,0.35),
+        0 8px 24px rgba(0,0,0,0.5);
+}
+
+.box-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.therapy-box:hover .box-img {
+    transform: scale(1.06);
+}
+
+.box-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 8, 6, 0.90);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.therapy-box:hover .box-overlay {
+    opacity: 1;
+}
+
+.box-desc {
+    color: var(--color-cream);
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    line-height: 1.65;
+    text-align: center;
+    margin: 0;
+}
+
+.box-label {
+    padding: 10px 8px 9px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1410 0%, #13100c 100%);
+    border-left: 1.5px solid rgba(168, 153, 104, 0.18);
+    border-right: 1.5px solid rgba(168, 153, 104, 0.12);
+    border-bottom: 1.5px solid rgba(168, 153, 104, 0.22);
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-label span {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    display: block;
+}
+
+.therapy-box:hover .box-label {
+    background: linear-gradient(180deg, #22180f 0%, #1a1208 100%);
+}
+
+.therapy-box:hover .box-label span {
+    color: #C8B880;
+}
+
+/* Mobile: 3 columns */
+@media (max-width: 768px) {
+    .therapy-shelf {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 32px 0 48px;
+    }
+    .therapy-shelf::before { display: none; }
+    .box-desc { font-size: 9.5px; }
+    .box-label span { font-size: 10px; }
 }
 
 /* ============================================
