@@ -736,74 +736,118 @@ section {
    CONDITIONS SECTION
 ============================================ */
 #conditions {
-    background: var(--color-cream);
+    background: #0a0806;
+    padding: var(--spacing-xl) 0;
 }
 
-.conditions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: var(--spacing-lg);
+#conditions .section-title {
+    color: var(--color-cream);
+    text-align: center;
+}
+
+.conditions-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+.conditions-intro {
+    color: rgba(248, 246, 243, 0.42);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.9;
+    max-width: 520px;
+    text-align: center;
+}
+
+/* Pill tag cloud layout */
+.conditions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    justify-content: center;
+    padding-top: 0.5rem;
 }
 
 .condition-item {
-    background: var(--color-white);
-    padding: 1.5rem;
-    border-radius: 15px;
-    font-size: 1rem;
-    color: var(--color-text);
-    font-weight: 500;
-    box-shadow: var(--shadow-sm);
-    transition: all var(--transition-smooth);
-    border: 1px solid transparent;
-}
-
-.condition-item:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-gold);
-    background: linear-gradient(135deg, var(--color-white) 0%, rgba(248, 246, 243, 0.5) 100%);
-}
-
-.condition-header {
+    position: relative;
     cursor: pointer;
+    border: 1px solid rgba(168, 153, 104, 0.22);
+    border-radius: 100px;
+    background: rgba(168, 153, 104, 0.05);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.condition-item::before {
+    display: none;
+}
+
+.condition-item:hover,
+.condition-item.active {
+    background: rgba(168, 153, 104, 0.12);
+    border-color: rgba(168, 153, 104, 0.55);
+    transform: translateY(-1px);
+}
+
+/* Pill header — just number + name, no toggle */
+.condition-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-    text-align: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem 0.55rem 0.85rem;
     user-select: none;
+    cursor: pointer;
+}
+
+.condition-num {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--color-gold);
+    opacity: 0.55;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+.condition-item:hover .condition-num,
+.condition-item.active .condition-num {
+    opacity: 0.9;
+}
+
+.condition-name {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--color-cream);
+    letter-spacing: 0.015em;
+    line-height: 1.3;
 }
 
 .condition-toggle {
-    font-size: 1.5rem;
-    color: var(--color-gold);
-    font-weight: 700;
-    transition: transform var(--transition-smooth);
-    flex-shrink: 0;
-    line-height: 1;
+    display: none;
 }
 
+/* Description expands below the full pill cloud */
 .condition-description {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none;
+}
+
+.condition-item.active .condition-description {
+    display: none;
 }
 
 .condition-description p {
     margin: 0;
-    padding-top: 1rem;
-    color: var(--color-text-light);
-    line-height: 1.7;
-    text-align: left;
-    font-size: 0.95rem;
-}
-
-.condition-item.active .condition-description {
-    max-height: 300px;
-}
-
-.condition-item.active .condition-toggle {
-    transform: rotate(45deg);
+    padding: 0;
+    color: rgba(248, 246, 243, 0.45);
+    font-size: 0.9rem;
+    line-height: 1.85;
+    font-family: var(--font-body);
 }
 
 /* ============================================
@@ -1420,10 +1464,18 @@ section {
 }
 
 .benefit-icon {
-    font-size: 1.8rem;
     flex-shrink: 0;
-    width: 2.5rem;
-    text-align: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gold);
+}
+
+.benefit-icon svg {
+    width: 26px;
+    height: 26px;
 }
 
 .benefit-item h4 {
@@ -1602,9 +1654,19 @@ section {
 }
 
 .info-icon {
-    font-size: 1.5rem;
     color: var(--color-gold);
-    margin-top: 0.2rem;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-icon svg {
+    width: 20px;
+    height: 20px;
 }
 
 .info-content h4 {
@@ -1864,8 +1926,25 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .conditions-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .conditions-header {
+        gap: 1rem;
+    }
+
+    .condition-header {
+        gap: 0.5rem;
+        padding: 1.2rem 1rem 1.2rem 1rem;
+    }
+
+    .condition-num {
+        font-size: 0.6rem;
+    }
+
+    .condition-name {
+        font-size: 0.85rem;
+    }
+
+    .condition-description p {
+        padding: 0;
     }
 
     .authority-banner {
