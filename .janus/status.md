@@ -1,8 +1,8 @@
 ---
 status: active
-stage: dev
-phase: ""
-phaseProgress: 0
+stage: uat
+phase: "V2 — ready to deploy"
+phaseProgress: 0.9
 summary: "Website and project description for the Longevite Therapeutics clinic"
 lastSyncedAt: "2026-04-30T19:01:15.600Z"
 lastSyncedCommit: "359bffe"
@@ -16,13 +16,15 @@ lastSyncedCommitMessage: "Increase nutrIA chat panel size — 60% wider, 20% tal
      Priority: P1 (urgent), P2 (default), P3 (nice-to-have).
      Effort: 30m, 2h, 1d (1d = 6h focused work). -->
 
-- [ ] [P2, 2h] Define the first concrete next step for this project
+- [ ] [P1, 1h] Deploy V2 to Netlify
+- [ ] [P1, 2h] Connect contact form to email + WhatsApp
+- [ ] [P2, 1h] Wire Google Analytics
 
 ## Milestones
 
 <!-- Significant moments. Newest first. ISO date — short description. -->
 
-- 2026-04-30 — Janus status file created
+- 2026-04-30 — V2 website build complete
 
 ## Calendar
 
