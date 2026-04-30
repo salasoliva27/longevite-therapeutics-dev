@@ -4,9 +4,9 @@ stage: uat
 phase: "V2 — ready to deploy"
 phaseProgress: 0.9
 summary: "Website and project description for the Longevite Therapeutics clinic"
-lastSyncedAt: "2026-04-30T19:01:15.600Z"
-lastSyncedCommit: "359bffe"
-lastSyncedCommitMessage: "Increase nutrIA chat panel size — 60% wider, 20% taller (360×520 → 576×624)"
+lastSyncedAt: "2026-04-30T21:05:43.102Z"
+lastSyncedCommit: "747ae83"
+lastSyncedCommitMessage: "chore(janus): seed real status from brain context"
 ---
 
 ## Next Steps
