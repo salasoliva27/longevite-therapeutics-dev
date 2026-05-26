@@ -1,6 +1,6 @@
 ---
-lastSyncedAt: "2026-05-26T17:26:35.605Z"
-lastSyncedCommit: "7c57eda"
+lastSyncedAt: "2026-05-26T17:26:41.494Z"
+lastSyncedCommit: "9abe219"
 lastSyncedCommitMessage: "chore(janus): sync .janus/status.md from wiki/longevite.md"
 ---
 
